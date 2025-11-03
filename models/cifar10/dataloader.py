@@ -7,7 +7,7 @@ import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
 
 IMAGE_SIZE = 32
-IMAGES_DIR = os.path.join('..', 'data', 'cifar10', 'data', 'raw', 'img')
+IMAGES_DIR = os.path.join('..', 'data', 'cifar10', 'data', 'img')
 
 class ClientDataset(Dataset):
     """ CIFAR100 Dataset """
@@ -18,7 +18,7 @@ class ClientDataset(Dataset):
             data: dictionary in the form {'x': list of imgs ids, 'y': list of correspondings labels}
             train (bool, optional): boolean for distinguishing between client's train and test data
         """
-        self.root_dir = IMAGES_DIR
+        self.root_dir = os.path.join(IMAGES_DIR, "train" if train else "test")
         self.imgs = []
         self.labels = []
         self.loading = loading
@@ -36,9 +36,7 @@ class ClientDataset(Dataset):
                 image.load()  # Force load image into memory
                 return image
 
-            # Use ThreadPoolExecutor to load images in parallel
             with ThreadPoolExecutor(max_workers=min(12, len(data['x']))) as executor:
-                # Submit all image loading tasks
                 future_to_idx = {
                     executor.submit(load_image, img_name): i 
                     for i, img_name in enumerate(data['x'])

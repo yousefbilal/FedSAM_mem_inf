@@ -1,13 +1,8 @@
 import copy
 import numpy as np
-import os
-import random
 import torch
-import torch.distributions.constraints as constraints
-import torch.nn as nn
 from baseline_constants import BYTES_WRITTEN_KEY, BYTES_READ_KEY, CLIENT_PARAMS_KEY, CLIENT_GRAD_KEY, CLIENT_TASK_KEY
 from collections import OrderedDict
-from tqdm import tqdm
 
 
 class Server:

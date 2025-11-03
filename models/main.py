@@ -26,10 +26,11 @@ from utils.main_utils import (
     resume_run,
     schedule_cycling_lr,
 )
-from utils.model_utils import read_data, combine_client_data, split_noniid_dirichlet
+from utils.model_utils import read_data, split_noniid_dirichlet
+from tqdm import tqdm
 
 # os.environ["WANDB_API_KEY"] = ""
-os.environ["WANDB_MODE"] = "offline"
+os.environ["WANDB_MODE"] = "online"
 
 
 def main():
@@ -37,6 +38,7 @@ def main():
     check_args(args)
 
     # Set the random seed if provided (affects client sampling and batching)
+    # FIXME: try moving to training_run() instead
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
@@ -56,7 +58,6 @@ def main():
         torch.cuda.get_device_name(device) if device != "cpu" else "cpu",
     )
 
-    run, job_name = init_wandb(args, alpha, run_id=args.wandb_run_id)
 
     # Obtain the path to client's model (e.g. cifar10/cnn.py), client class and servers class
     model_path = "%s/%s.py" % (args.dataset, args.model)
@@ -100,7 +101,422 @@ def main():
         args.clients_per_round if args.clients_per_round != -1 else tup[2]
     )
 
-# MAYBE START ROUND FROM HERE??
+    train_data_dir = os.path.join("..", "data", args.dataset, "data", "img", "train")
+    test_data_dir = os.path.join("..", "data", args.dataset, "data", "img", "test")
+
+    test_users, train_data, test_data = read_data(
+        train_data_dir, test_data_dir, alpha=0
+    )
+
+    # combined_x, combined_y = combine_client_data(train_data)
+
+    # train_data = {
+    #     "x": combined_x,
+    #     "y": combined_y,
+    # }
+
+    n_runs = args.influence_runs
+    subset_ratio = args.subset_ratio
+
+    results = []
+
+    for i_run in tqdm(range(n_runs), desc="Running influence estimation"):
+        subset_mask, subset_train_data = subset_train(i_run, subset_ratio, train_data)
+
+        final_model = training_run(
+            model_path,
+            args,
+            ClientModel,
+            device,
+            alpha,
+            Server,
+            Client,
+            ClientDataset,
+            num_rounds,
+            clients_per_round,
+            eval_every,
+            subset_train_data,
+            test_data,
+            test_users,
+        )
+
+        train_correctness = calculate_correctness(
+            args, final_model, train_data, device, ClientDataset, True, 64
+        )
+        test_correctness = calculate_correctness(
+            args, final_model, test_data["100"], device, ClientDataset, False, 64
+        )
+
+        results.append(
+            {
+                "subset_mask": subset_mask,
+                "train_correctness": train_correctness,
+                "test_correctness": test_correctness,
+            }
+        )
+
+    # Stack results
+    trainset_mask = np.vstack([res["subset_mask"] for res in results])
+    inv_mask = np.logical_not(trainset_mask)
+    trainset_correctness = np.vstack([res["train_correctness"] for res in results])
+    testset_correctness = np.vstack([res["test_correctness"] for res in results])
+
+    print(f"Average test accuracy = {np.mean(testset_correctness):.4f}")
+
+    def _masked_avg(x, mask, axis=0, eps=1e-10):
+        return (
+            np.sum(x * mask, axis=axis) / np.maximum(np.sum(mask, axis=axis), eps)
+        ).astype(np.float32)
+
+    def _masked_dot(x, mask, eps=1e-10):
+        x = x.T.astype(np.float32)
+        return (
+            np.matmul(x, mask) / np.maximum(np.sum(mask, axis=0, keepdims=True), eps)
+        ).astype(np.float32)
+
+    mem_est = _masked_avg(trainset_correctness, trainset_mask) - _masked_avg(
+        trainset_correctness, inv_mask
+    )
+    infl_est = _masked_dot(testset_correctness, trainset_mask) - _masked_dot(
+        testset_correctness, inv_mask
+    )
+    
+    return {
+        "memorization": mem_est,
+        "influence": infl_est,
+        "avg_test_acc": np.mean(testset_correctness),
+    } 
+
+
+def online(clients):
+    """We assume all users are always online."""
+    return clients
+
+
+def create_clients(
+    users,
+    train_data,
+    test_data,
+    model,
+    args,
+    ClientDataset,
+    Client,
+    run=None,
+    device=None,
+):
+    clients = []
+    client_params = define_client_params(args.client_algorithm, args)
+    client_params["model"] = model
+    client_params["run"] = run
+    client_params["device"] = device
+    for u in users:
+        c_traindata = ClientDataset(
+            train_data[u],
+            train=True,
+            loading=args.where_loading,
+            cutout=Cutout if args.cutout else None,
+        )
+        c_testdata = ClientDataset(
+            test_data[u], train=False, loading=args.where_loading, cutout=None
+        )
+        client_params["client_id"] = u
+        client_params["train_data"] = c_traindata
+        client_params["eval_data"] = c_testdata
+        clients.append(Client(**client_params))
+    return clients
+
+
+def setup_clients(
+    train_data,
+    test_data,
+    test_users,
+    args,
+    model,
+    Client,
+    ClientDataset,
+    run=None,
+    device=None,
+):
+    """Instantiates clients based on given train and test data directories.
+
+    Return:
+        all_clients: list of Client objects.
+    """
+
+    train_data = split_noniid_dirichlet(
+        train_data["x"], train_data["y"], args.n_clients, args.alpha
+    )
+    train_users = list(train_data.keys())
+
+    train_clients = create_clients(
+        train_users,
+        train_data,
+        test_data,
+        model,
+        args,
+        ClientDataset,
+        Client,
+        run,
+        device,
+    )
+    test_clients = create_clients(
+        test_users,
+        train_data,
+        test_data,
+        model,
+        args,
+        ClientDataset,
+        Client,
+        run,
+        device,
+    )
+
+    return train_clients, test_clients
+
+
+def get_client_and_server(server_path, client_path):
+    mod = importlib.import_module(server_path)
+    cls = inspect.getmembers(mod, inspect.isclass)
+    server_name = server_path.split(".")[1].split("_server")[0]
+    server_name = list(
+        map(
+            lambda x: x[0],
+            filter(lambda x: "Server" in x[0] and server_name in x[0].lower(), cls),
+        )
+    )[0]
+    Server = getattr(mod, server_name)
+    mod = importlib.import_module(client_path)
+    cls = inspect.getmembers(mod, inspect.isclass)
+    client_name = max(
+        list(map(lambda x: x[0], filter(lambda x: "Client" in x[0], cls))), key=len
+    )
+    Client = getattr(mod, client_name)
+    return Client, Server
+
+
+def init_wandb(args, alpha=None, run_id=None):
+    group_name = args.algorithm
+    if args.algorithm == "fedopt":
+        group_name = group_name + "_" + args.server_opt
+
+    configuration = args
+    if alpha is not None:
+        alpha = float(alpha.split("_")[1])
+        if alpha not in [0.05, 0.1, 0.2, 0.5]:
+            alpha = int(alpha)
+        configuration.alpha = alpha
+
+    job_name = (
+        "K"
+        + str(args.clients_per_round)
+        + "_N"
+        + str(args.num_rounds)
+        + "_"
+        + args.model
+        + "_E"
+        + str(args.num_epochs)
+        + "_clr"
+        + str(args.lr)
+        + "_"
+        + args.algorithm
+    )
+    if alpha is not None:
+        job_name = "alpha" + str(alpha) + "_" + job_name
+
+    if args.server_opt is not None:
+        job_name += "_" + args.server_opt + "_slr" + str(args.server_lr)
+
+    if args.server_momentum > 0:
+        job_name = job_name + "_b" + str(args.server_momentum)
+
+    if args.client_algorithm is not None:
+        job_name = job_name + "_" + args.client_algorithm
+        if args.client_algorithm == "asam" or args.client_algorithm == "sam":
+            job_name += "_rho" + str(args.rho)
+            if args.client_algorithm == "asam":
+                job_name += "_eta" + str(args.eta)
+
+    if args.mixup:
+        job_name += "_mixup" + str(args.mixup_alpha)
+
+    if args.cutout:
+        job_name += "_cutout"
+
+    if args.swa:
+        job_name += (
+            "_swa"
+            + (str(args.swa_start) if args.swa_start is not None else "")
+            + "_c"
+            + str(args.swa_c)
+            + "_swalr"
+            + str(args.swa_lr)
+        )
+
+    if run_id is None:
+        id = wandb.util.generate_id()
+    else:
+        id = run_id
+    run = wandb.init(
+        id=id,
+        # Set entity to specify your username or team name
+        # entity="federated-learning",
+        # Set the project where this run will be logged
+        project="fl_" + args.dataset,
+        entity="ysf-aus",
+        group=group_name,
+        # Track hyperparameters and run metadata
+        config=configuration,
+        resume="allow",
+    )
+
+    if os.environ["WANDB_MODE"] != "offline" and not wandb.run.resumed:
+        random_number = wandb.run.name.split("-")[-1]
+        wandb.run.name = job_name + "-" + random_number
+        wandb.run.save("wandb_online")
+
+    return run, job_name
+
+
+def print_stats(
+    num_round,
+    server,
+    train_clients,
+    train_num_samples,
+    test_clients,
+    test_num_samples,
+    args,
+    fp,
+):
+    train_stat_metrics = server.test_model(
+        train_clients, args.batch_size, set_to_use="train"
+    )
+    val_metrics = print_metrics(
+        train_stat_metrics, train_num_samples, fp, prefix="train_"
+    )
+
+    test_stat_metrics = server.test_model(
+        test_clients, args.batch_size, set_to_use="test"
+    )
+    test_metrics = print_metrics(
+        test_stat_metrics, test_num_samples, fp, prefix="{}_".format("test")
+    )
+
+    wandb.log(
+        {
+            "Validation accuracy": val_metrics[0],
+            "Validation loss": val_metrics[1],
+            "Test accuracy": test_metrics[0],
+            "Test loss": test_metrics[1],
+            "round": num_round,
+        },
+        commit=False,
+    )
+
+    return val_metrics, test_metrics
+
+
+def print_metrics(metrics, weights, fp, prefix=""):
+    """Prints weighted averages of the given metrics.
+
+    Args:
+        metrics: dict with client ids as keys. Each entry is a dict
+            with the metrics of that client.
+        weights: dict with client ids as keys. Each entry is the weight
+            for that client.
+    """
+    ordered_weights = [weights[c] for c in sorted(weights)]
+    metric_names = metrics_writer.get_metrics_names(metrics)
+    metrics_values = []
+    for metric in metric_names:
+        ordered_metric = [metrics[c][metric] for c in sorted(metrics)]
+        print(
+            "%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g"
+            % (
+                prefix + metric,
+                np.average(ordered_metric, weights=ordered_weights),
+                np.percentile(ordered_metric, 10),
+                np.percentile(ordered_metric, 50),
+                np.percentile(ordered_metric, 90),
+            )
+        )
+        fp.write(
+            "%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g\n"
+            % (
+                prefix + metric,
+                np.average(ordered_metric, weights=ordered_weights),
+                np.percentile(ordered_metric, 10),
+                np.percentile(ordered_metric, 50),
+                np.percentile(ordered_metric, 90),
+            )
+        )
+        # fp.write("Clients losses:", ordered_metric)
+        metrics_values.append(np.average(ordered_metric, weights=ordered_weights))
+    return metrics_values
+
+
+def subset_train(seed, subset_ratio, train_data):
+    np.random.seed(seed)
+    num_train_total = len(train_data["x"])
+    num_train = int(num_train_total * subset_ratio)
+
+    # Select random subset of training data
+    subset_idx = np.random.choice(num_train_total, size=num_train, replace=False)
+    subset_mask = np.zeros(num_train_total, dtype=bool)
+    subset_mask[subset_idx] = True
+
+    # Create subset of training data
+    subset_train_data = {
+        "x": train_data["x"][subset_idx],
+        "y": train_data["y"][subset_idx],
+    }
+
+    return subset_mask, subset_train_data
+
+
+def calculate_correctness(args, model, data, device, ClientDataset, train=True, batch_size=128):
+    """Calculate correctness for given data using the model."""
+    # Create data loader
+    dataset  = ClientDataset(
+            data,
+            train=train,
+            loading=args.where_loading,
+        )
+    loader = torch.utils.data.DataLoader(
+        dataset, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=True
+    )
+
+    correct = []
+    model.eval()  # Set model to evaluation mode
+
+    with torch.no_grad():  # Disable gradient computation
+        for batch_x, batch_y in loader:
+            batch_x = batch_x.to(device)
+            predictions = model(batch_x)
+            predicted_class = torch.argmax(predictions, dim=1).cpu().numpy()
+            target_class = batch_y.numpy()
+            correct.extend(predicted_class == target_class)
+
+    return np.array(correct)
+
+
+def training_run(
+    model_path,
+    args,
+    ClientModel,
+    device,
+    alpha,
+    Server,
+    Client,
+    ClientDataset,
+    num_rounds,
+    clients_per_round,
+    eval_every,
+    subset_train_data,
+    test_data,
+    test_users,
+):
+    
+    run, job_name = init_wandb(args, alpha, run_id=args.wandb_run_id)
 
     model_params = MODEL_PARAMS[model_path]
     if args.lr != -1:
@@ -137,7 +553,15 @@ def main():
 
     #### Create and set up clients ####
     train_clients, test_clients = setup_clients(
-        args, client_model, Client, ClientDataset, run, device
+        subset_train_data,
+        test_data,
+        test_users,
+        args,
+        client_model,
+        Client,
+        ClientDataset,
+        run,
+        device,
     )
     train_client_ids, train_client_num_samples = server.get_clients_info(train_clients)
     test_client_ids, test_client_num_samples = server.get_clients_info(test_clients)
@@ -323,290 +747,10 @@ def main():
     print("File saved in path: %s" % res_path)
     wandb.finish()
 
-
-def online(clients):
-    """We assume all users are always online."""
-    return clients
-
-
-def create_clients(
-    users,
-    train_data,
-    test_data,
-    model,
-    args,
-    ClientDataset,
-    Client,
-    run=None,
-    device=None,
-):
-    clients = []
-    client_params = define_client_params(args.client_algorithm, args)
-    client_params["model"] = model
-    client_params["run"] = run
-    client_params["device"] = device
-    for u in users:
-        c_traindata = ClientDataset(
-            train_data[u],
-            train=True,
-            loading=args.where_loading,
-            cutout=Cutout if args.cutout else None,
-        )
-        c_testdata = ClientDataset(
-            test_data[u], train=False, loading=args.where_loading, cutout=None
-        )
-        client_params["client_id"] = u
-        client_params["train_data"] = c_traindata
-        client_params["eval_data"] = c_testdata
-        clients.append(Client(**client_params))
-    return clients
-
-
-def setup_clients(
-    args,
-    model,
-    Client,
-    ClientDataset,
-    run=None,
-    device=None,
-):
-    """Instantiates clients based on given train and test data directories.
-
-    Return:
-        all_clients: list of Client objects.
-    """
-    train_data_dir = os.path.join("..", "data", args.dataset, "data", "train")
-    test_data_dir = os.path.join("..", "data", args.dataset, "data", "test")
-
-    _, _, test_users, _, train_data, test_data = read_data(
-        train_data_dir, test_data_dir, alpha=0
-    )
-
-    combined_x, combined_y = combine_client_data(train_data)
-    train_data = split_noniid_dirichlet(
-        combined_x, combined_y, args.n_clients, args.alpha
-    )
-    train_users = list(train_data.keys())
-
-    train_clients = create_clients(
-        train_users,
-        train_data,
-        test_data,
-        model,
-        args,
-        ClientDataset,
-        Client,
-        run,
-        device,
-    )
-    test_clients = create_clients(
-        test_users,
-        train_data,
-        test_data,
-        model,
-        args,
-        ClientDataset,
-        Client,
-        run,
-        device,
-    )
-
-    return train_clients, test_clients
-
-
-def get_client_and_server(server_path, client_path):
-    mod = importlib.import_module(server_path)
-    cls = inspect.getmembers(mod, inspect.isclass)
-    server_name = server_path.split(".")[1].split("_server")[0]
-    server_name = list(
-        map(
-            lambda x: x[0],
-            filter(lambda x: "Server" in x[0] and server_name in x[0].lower(), cls),
-        )
-    )[0]
-    Server = getattr(mod, server_name)
-    mod = importlib.import_module(client_path)
-    cls = inspect.getmembers(mod, inspect.isclass)
-    client_name = max(
-        list(map(lambda x: x[0], filter(lambda x: "Client" in x[0], cls))), key=len
-    )
-    Client = getattr(mod, client_name)
-    return Client, Server
-
-
-def init_wandb(args, alpha=None, run_id=None):
-    group_name = args.algorithm
-    if args.algorithm == "fedopt":
-        group_name = group_name + "_" + args.server_opt
-
-    configuration = args
-    if alpha is not None:
-        alpha = float(alpha.split("_")[1])
-        if alpha not in [0.05, 0.1, 0.2, 0.5]:
-            alpha = int(alpha)
-        configuration.alpha = alpha
-
-    job_name = (
-        "K"
-        + str(args.clients_per_round)
-        + "_N"
-        + str(args.num_rounds)
-        + "_"
-        + args.model
-        + "_E"
-        + str(args.num_epochs)
-        + "_clr"
-        + str(args.lr)
-        + "_"
-        + args.algorithm
-    )
-    if alpha is not None:
-        job_name = "alpha" + str(alpha) + "_" + job_name
-
-    if args.server_opt is not None:
-        job_name += "_" + args.server_opt + "_slr" + str(args.server_lr)
-
-    if args.server_momentum > 0:
-        job_name = job_name + "_b" + str(args.server_momentum)
-
-    if args.client_algorithm is not None:
-        job_name = job_name + "_" + args.client_algorithm
-        if args.client_algorithm == "asam" or args.client_algorithm == "sam":
-            job_name += "_rho" + str(args.rho)
-            if args.client_algorithm == "asam":
-                job_name += "_eta" + str(args.eta)
-
-    if args.mixup:
-        job_name += "_mixup" + str(args.mixup_alpha)
-
-    if args.cutout:
-        job_name += "_cutout"
-
-    if args.swa:
-        job_name += (
-            "_swa"
-            + (str(args.swa_start) if args.swa_start is not None else "")
-            + "_c"
-            + str(args.swa_c)
-            + "_swalr"
-            + str(args.swa_lr)
-        )
-
-    if run_id is None:
-        id = wandb.util.generate_id()
-    else:
-        id = run_id
-    run = wandb.init(
-        id=id,
-        # Set entity to specify your username or team name
-        # entity="federated-learning",
-        # Set the project where this run will be logged
-        project="fl_" + args.dataset,
-        group=group_name,
-        # Track hyperparameters and run metadata
-        config=configuration,
-        resume="allow",
-    )
-
-    if os.environ["WANDB_MODE"] != "offline" and not wandb.run.resumed:
-        random_number = wandb.run.name.split("-")[-1]
-        wandb.run.name = job_name + "-" + random_number
-        wandb.run.save()
-
-    return run, job_name
-
-
-def print_stats(
-    num_round,
-    server,
-    train_clients,
-    train_num_samples,
-    test_clients,
-    test_num_samples,
-    args,
-    fp,
-):
-    train_stat_metrics = server.test_model(
-        train_clients, args.batch_size, set_to_use="train"
-    )
-    val_metrics = print_metrics(
-        train_stat_metrics, train_num_samples, fp, prefix="train_"
-    )
-
-    test_stat_metrics = server.test_model(
-        test_clients, args.batch_size, set_to_use="test"
-    )
-    test_metrics = print_metrics(
-        test_stat_metrics, test_num_samples, fp, prefix="{}_".format("test")
-    )
-
-    wandb.log(
-        {
-            "Validation accuracy": val_metrics[0],
-            "Validation loss": val_metrics[1],
-            "Test accuracy": test_metrics[0],
-            "Test loss": test_metrics[1],
-            "round": num_round,
-        },
-        commit=False,
-    )
-
-    return val_metrics, test_metrics
-
-
-def print_metrics(metrics, weights, fp, prefix=""):
-    """Prints weighted averages of the given metrics.
-
-    Args:
-        metrics: dict with client ids as keys. Each entry is a dict
-            with the metrics of that client.
-        weights: dict with client ids as keys. Each entry is the weight
-            for that client.
-    """
-    ordered_weights = [weights[c] for c in sorted(weights)]
-    metric_names = metrics_writer.get_metrics_names(metrics)
-    metrics_values = []
-    for metric in metric_names:
-        ordered_metric = [metrics[c][metric] for c in sorted(metrics)]
-        print(
-            "%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g"
-            % (
-                prefix + metric,
-                np.average(ordered_metric, weights=ordered_weights),
-                np.percentile(ordered_metric, 10),
-                np.percentile(ordered_metric, 50),
-                np.percentile(ordered_metric, 90),
-            )
-        )
-        fp.write(
-            "%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g\n"
-            % (
-                prefix + metric,
-                np.average(ordered_metric, weights=ordered_weights),
-                np.percentile(ordered_metric, 10),
-                np.percentile(ordered_metric, 50),
-                np.percentile(ordered_metric, 90),
-            )
-        )
-        # fp.write("Clients losses:", ordered_metric)
-        metrics_values.append(np.average(ordered_metric, weights=ordered_weights))
-    return metrics_values
-
-
-
-def estimate_influence_memorization(train_data, test_data, args, server_class, client_class):
-    n_runs = args.influence_runs
-    subset_ratio = args.subset_ratio
-
-def subset_train_federated(
-    seed, subset_ratio, train_data, test_data, args, server_class, client_class
-): 
-    ...
-
-
-def training_round(): ...
-
+    client_model.load_state_dict(server.model)
+    return client_model
 
 
 if __name__ == "__main__":
-    main()
+    res = main()
+    print(res)

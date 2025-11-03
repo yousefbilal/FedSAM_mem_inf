@@ -63,10 +63,26 @@ def read_data(train_data_dir, test_data_dir, alpha=None):
         train_data: dictionary of train data
         test_data: dictionary of test data
     """
-    train_clients, train_groups, train_data = read_dir(train_data_dir, alpha)
-    test_clients, test_groups, test_data = read_dir(test_data_dir)
+    train_data = os.listdir(train_data_dir)
 
-    return train_clients, train_groups, test_clients, test_groups, train_data, test_data
+    train_labels = list(
+        map(lambda x: int(os.path.splitext(x)[0].split("_")[-1]), train_data)
+    )
+    train_data = {"x": np.array(train_data), "y": np.array(train_labels)}
+    test_data_files = os.listdir(test_data_dir)
+    test_labels = list(
+        map(lambda x: int(os.path.splitext(x)[0].split("_")[-1]), test_data_files)
+    )
+
+    test_data = defaultdict(lambda: None)
+    
+    test_data.update(
+        {"100": {"x": np.array(test_data_files), "y": np.array(test_labels)}}
+    )
+
+    test_clients = ["100"]
+
+    return test_clients, train_data, test_data
 
 
 def combine_client_data(data_dict):
@@ -81,7 +97,6 @@ def combine_client_data(data_dict):
     combined_y = np.concatenate(all_y, axis=0)
 
     return combined_x, combined_y
-
 
 
 def split_noniid_dirichlet(combined_x, combined_y, n_clients, alpha=0.5):

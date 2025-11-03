@@ -17,6 +17,7 @@ MAIN_PARAMS = {
 MODEL_PARAMS = {
     'cifar100.cnn': (0.01, 100),
     'cifar10.cnn': (0.01, 10),
+    'cifar10.resnet18': (0.001, 10),
 }
 """dict: Model specific parameter specification"""
 

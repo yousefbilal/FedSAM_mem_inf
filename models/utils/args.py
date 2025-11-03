@@ -10,6 +10,12 @@ SIM_TIMES = ['small', 'medium', 'large']
 def parse_args():
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('--influence_runs', type=int, default=100,
+                        help='Number of runs for influence estimation')
+    
+    parser.add_argument('--subset_ratio', type=float, default=0.7,
+                        help='Ratio of data to use in each subset run')
+
     parser.add_argument('-dataset',
                     help='name of dataset;',
                     type=str,
