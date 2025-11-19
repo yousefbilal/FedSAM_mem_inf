@@ -63,13 +63,13 @@ def read_data(train_data_dir, test_data_dir, alpha=None):
         train_data: dictionary of train data
         test_data: dictionary of test data
     """
-    train_data = os.listdir(train_data_dir)
+    train_data = sorted(os.listdir(train_data_dir))
 
     train_labels = list(
         map(lambda x: int(os.path.splitext(x)[0].split("_")[-1]), train_data)
     )
     train_data = {"x": np.array(train_data), "y": np.array(train_labels)}
-    test_data_files = os.listdir(test_data_dir)
+    test_data_files = sorted(os.listdir(test_data_dir))
     test_labels = list(
         map(lambda x: int(os.path.splitext(x)[0].split("_")[-1]), test_data_files)
     )

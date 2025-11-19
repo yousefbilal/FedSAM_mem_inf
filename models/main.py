@@ -4,6 +4,7 @@ import importlib
 import inspect
 import numpy as np
 import os
+import json
 
 # os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 # os.environ['CUDA_VISIBLE_DEVICES'] = "3"
@@ -38,12 +39,6 @@ def main():
     check_args(args)
 
     # Set the random seed if provided (affects client sampling and batching)
-    # FIXME: try moving to training_run() instead
-    random.seed(args.seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed(args.seed)
-    torch.cuda.manual_seed_all(args.seed)
 
     # CIFAR: obtain info on parameter alpha (Dirichlet's distribution)
     alpha = args.alpha
@@ -57,7 +52,6 @@ def main():
         "Using device:",
         torch.cuda.get_device_name(device) if device != "cpu" else "cpu",
     )
-
 
     # Obtain the path to client's model (e.g. cifar10/cnn.py), client class and servers class
     model_path = "%s/%s.py" % (args.dataset, args.model)
@@ -121,9 +115,11 @@ def main():
     results = []
 
     for i_run in tqdm(range(n_runs), desc="Running influence estimation"):
-        subset_mask, subset_train_data = subset_train(i_run, subset_ratio, train_data)
+        subset_mask, subset_train_data = subset_train(
+            i_run + args.seed, subset_ratio, train_data
+        )
 
-        final_model = training_run(
+        final_model, file_name = training_run(
             model_path,
             args,
             ClientModel,
@@ -138,6 +134,7 @@ def main():
             subset_train_data,
             test_data,
             test_users,
+            i_run,
         )
 
         train_correctness = calculate_correctness(
@@ -146,6 +143,20 @@ def main():
         test_correctness = calculate_correctness(
             args, final_model, test_data["100"], device, ClientDataset, False, 64
         )
+
+        root_name, _ = os.path.splitext(file_name)
+        root_name = "_".join(root_name.split("_")[:-2])
+
+        root_name += f"_{i_run}_{args.seed}_correctness.npz"
+
+        np.savez_compressed(
+            root_name,
+            subset_mask=subset_mask,
+            train_correctness=train_correctness,
+            test_correctness=test_correctness,
+        )
+        
+        print("Saved to", root_name)
 
         results.append(
             {
@@ -161,31 +172,43 @@ def main():
     trainset_correctness = np.vstack([res["train_correctness"] for res in results])
     testset_correctness = np.vstack([res["test_correctness"] for res in results])
 
+    root_name, _ = os.path.splitext(file_name)
+    root_name = "_".join(root_name.split("_")[:-2])
+
+    correctness_file = root_name + f"_{args.seed}_setcorrectess.npz"
+    np.savez_compressed(
+        correctness_file,
+        trainset_mask=trainset_mask,
+        trainset_correctness=trainset_correctness,
+        testset_correctness=testset_correctness,
+    )
+
+    print("Saved to", correctness_file)
     print(f"Average test accuracy = {np.mean(testset_correctness):.4f}")
 
-    def _masked_avg(x, mask, axis=0, eps=1e-10):
-        return (
-            np.sum(x * mask, axis=axis) / np.maximum(np.sum(mask, axis=axis), eps)
-        ).astype(np.float32)
+    # def _masked_avg(x, mask, axis=0, eps=1e-10):
+    #     return (
+    #         np.sum(x * mask, axis=axis) / np.maximum(np.sum(mask, axis=axis), eps)
+    #     ).astype(np.float32)
 
-    def _masked_dot(x, mask, eps=1e-10):
-        x = x.T.astype(np.float32)
-        return (
-            np.matmul(x, mask) / np.maximum(np.sum(mask, axis=0, keepdims=True), eps)
-        ).astype(np.float32)
-
-    mem_est = _masked_avg(trainset_correctness, trainset_mask) - _masked_avg(
-        trainset_correctness, inv_mask
-    )
-    infl_est = _masked_dot(testset_correctness, trainset_mask) - _masked_dot(
-        testset_correctness, inv_mask
-    )
+    # def _masked_dot(x, mask, eps=1e-10):
+    #     x = x.T.astype(np.float32)
+    #     return (
+    #         np.matmul(x, mask) / np.maximum(np.sum(mask, axis=0, keepdims=True), eps)
+    #     ).astype(np.float32)
+    # print("Calculating influence scores...")
+    # mem_est = _masked_avg(trainset_correctness, trainset_mask) - _masked_avg(
+    #     trainset_correctness, inv_mask
+    # )
+    # infl_est = _masked_dot(testset_correctness, trainset_mask) - _masked_dot(
+    #     testset_correctness, inv_mask
+    # )
     
-    return {
-        "memorization": mem_est,
-        "influence": infl_est,
-        "avg_test_acc": np.mean(testset_correctness),
-    } 
+    # return {
+    #     "memorization": mem_est,
+    #     "influence": infl_est,
+    #     "avg_test_acc": np.mean(testset_correctness),
+    # } 
 
 
 def online(clients):
@@ -455,7 +478,7 @@ def print_metrics(metrics, weights, fp, prefix=""):
 
 
 def subset_train(seed, subset_ratio, train_data):
-    np.random.seed(seed)
+    # np.random.seed(seed)
     num_train_total = len(train_data["x"])
     num_train = int(num_train_total * subset_ratio)
 
@@ -473,14 +496,16 @@ def subset_train(seed, subset_ratio, train_data):
     return subset_mask, subset_train_data
 
 
-def calculate_correctness(args, model, data, device, ClientDataset, train=True, batch_size=128):
+def calculate_correctness(
+    args, model, data, device, ClientDataset, train=True, batch_size=128
+):
     """Calculate correctness for given data using the model."""
     # Create data loader
-    dataset  = ClientDataset(
-            data,
-            train=train,
-            loading=args.where_loading,
-        )
+    dataset = ClientDataset(
+        data,
+        train=train,
+        loading=args.where_loading,
+    )
     loader = torch.utils.data.DataLoader(
         dataset, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=True
     )
@@ -514,8 +539,15 @@ def training_run(
     subset_train_data,
     test_data,
     test_users,
+    run_id,
 ):
-    
+    # FIXME: try moving to training_run() instead
+    random.seed(args.seed + run_id)
+    np.random.seed(args.seed + run_id)
+    torch.manual_seed(args.seed + run_id)
+    torch.cuda.manual_seed(args.seed + run_id)
+    torch.cuda.manual_seed_all(args.seed + run_id)
+
     run, job_name = init_wandb(args, alpha, run_id=args.wandb_run_id)
 
     model_params = MODEL_PARAMS[model_path]
@@ -660,9 +692,8 @@ def training_run(
 
         ##### Test model #####
         if (
-            (i + 1) % eval_every == 0
-            or (i + 1) == num_rounds
-            or (i + 1) > num_rounds - 100
+            (i + 1) % eval_every == 0 or (i + 1) == num_rounds
+            # or (i + 1) > num_rounds - 100
         ):  # eval every round in last 100 rounds
             _, test_metrics = print_stats(
                 i + 1,
@@ -674,8 +705,8 @@ def training_run(
                 args,
                 fp,
             )
-            if (i + 1) > num_rounds - 100:
-                last_accuracies.append(test_metrics[0])
+            # if (i + 1) > num_rounds - 100:
+            #     last_accuracies.append(test_metrics[0])
 
         ### Gradients information ###
         model_grad_norm = server.get_model_grad()
@@ -748,9 +779,8 @@ def training_run(
     wandb.finish()
 
     client_model.load_state_dict(server.model)
-    return client_model
+    return client_model, file
 
 
 if __name__ == "__main__":
-    res = main()
-    print(res)
+    main()
