@@ -75,6 +75,10 @@ def parse_args():
                         required=False)
 
     ## CLIENT TRAINING ##
+    parser.add_argument('--imagenet-pretrained',
+                        help='Use ImageNet pretrained weights for ResNet18 model;',
+                        action='store_true',
+                        default=False)
     parser.add_argument('--batch-size',
                     help='batch size when clients train on data;',
                     type=int,

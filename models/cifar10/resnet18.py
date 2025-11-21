@@ -34,7 +34,7 @@ def replace_bn_with_gn(module, num_groups=32):
             replace_bn_with_gn(child, num_groups)
 
 class ClientModel(nn.Module):
-    def __init__(self, lr, num_classes, device):
+    def __init__(self, lr, num_classes, device, use_imagenet=False):
         super(ClientModel, self).__init__()
         self.num_classes = num_classes
         self.lr = lr
@@ -42,7 +42,10 @@ class ClientModel(nn.Module):
 
         # 1. Load ResNet18 with ImageNet weights
         # We use this directly instead of creating a separate 'm' variable
-        self.feature_extractor = resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
+        if use_imagenet:
+            self.feature_extractor = resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
+        else:
+            self.feature_extractor = resnet18(weights=None)
 
         # 2. Adjust for CIFAR-10 (Smaller images)
         # Note: This resets the weights for this specific layer

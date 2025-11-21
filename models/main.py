@@ -31,7 +31,7 @@ from utils.model_utils import read_data, split_noniid_dirichlet
 from tqdm import tqdm
 
 # os.environ["WANDB_API_KEY"] = ""
-os.environ["WANDB_MODE"] = "online"
+os.environ["WANDB_MODE"] = "offline"
 
 
 def main():
@@ -147,7 +147,7 @@ def main():
         root_name, _ = os.path.splitext(file_name)
         root_name = "_".join(root_name.split("_")[:-2])
 
-        root_name += f"_{i_run}_{args.seed}_correctness.npz"
+        root_name += f"_{args.client_algorithm}_{i_run}_{}_{args.seed}_correctness.npz"
 
         np.savez_compressed(
             root_name,
@@ -167,24 +167,24 @@ def main():
         )
 
     # Stack results
-    # trainset_mask = np.vstack([res["subset_mask"] for res in results])
-    # inv_mask = np.logical_not(trainset_mask)
-    # trainset_correctness = np.vstack([res["train_correctness"] for res in results])
-    # testset_correctness = np.vstack([res["test_correctness"] for res in results])
+    trainset_mask = np.vstack([res["subset_mask"] for res in results])
+    inv_mask = np.logical_not(trainset_mask)
+    trainset_correctness = np.vstack([res["train_correctness"] for res in results])
+    testset_correctness = np.vstack([res["test_correctness"] for res in results])
 
-    # root_name, _ = os.path.splitext(file_name)
-    # root_name = "_".join(root_name.split("_")[:-2])
+    root_name, _ = os.path.splitext(file_name)
+    root_name = "_".join(root_name.split("_")[:-2])
 
-    # correctness_file = root_name + f"_{args.seed}_setcorrectess.npz"
-    # np.savez_compressed(
-    #     correctness_file,
-    #     trainset_mask=trainset_mask,
-    #     trainset_correctness=trainset_correctness,
-    #     testset_correctness=testset_correctness,
-    # )
+    correctness_file = root_name + f"_{args.seed}_setcorrectess.npz"
+    np.savez_compressed(
+        correctness_file,
+        trainset_mask=trainset_mask,
+        trainset_correctness=trainset_correctness,
+        testset_correctness=testset_correctness,
+    )
 
-    # print("Saved to", correctness_file)
-    # print(f"Average test accuracy = {np.mean(testset_correctness):.4f}")
+    print("Saved to", correctness_file)
+    print(f"Average test accuracy = {np.mean(testset_correctness):.4f}")
 
     # def _masked_avg(x, mask, axis=0, eps=1e-10):
     #     return (
@@ -557,7 +557,11 @@ def training_run(
         model_params = tuple(model_params_list)
 
     # Create client model, and share params with servers model
-    client_model = ClientModel(*model_params, device)
+    client_model_kwargs = {}
+    sig = inspect.signature(ClientModel.__init__) # check if it can use imagenet weights
+    if "use_imagenet_weights" in sig.parameters:
+        client_model_kwargs["use_imagenet_weights"] = args.imagenet_pretrained
+    client_model = ClientModel(*model_params, device, **client_model_kwargs)
     if args.load and wandb.run.resumed:  # load model from checkpoint
         client_model, checkpoint, ckpt_path_resumed = resume_run(
             client_model, args, wandb.run
@@ -673,7 +677,7 @@ def training_run(
                 server.update_clients_lr(lr)
 
         ##### Simulate servers model training on selected clients' data #####
-        _ = server.train_model(
+        sys_metrics = server.train_model(
             num_epochs=args.num_epochs,
             batch_size=args.batch_size,
             minibatch=args.minibatch,
@@ -709,61 +713,61 @@ def training_run(
             #     last_accuracies.append(test_metrics[0])
 
         ### Gradients information ###
-        # model_grad_norm = server.get_model_grad()
-        # grad_by_param = server.get_model_grad_by_param()
-        # for param, grad in grad_by_param.items():
-        #     name = "params_grad/" + param
-        #     wandb.log({name: grad}, commit=False)
-        # model_params_norm = server.get_model_params_norm()
+        model_grad_norm = server.get_model_grad()
+        grad_by_param = server.get_model_grad_by_param()
+        for param, grad in grad_by_param.items():
+            name = "params_grad/" + param
+            wandb.log({name: grad}, commit=False)
+        model_params_norm = server.get_model_params_norm()
 
-        # wandb.log(
-        #     {
-        #         "model total norm": model_grad_norm,
-        #         "global model parameters norm": model_params_norm,
-        #         "round": i + 1,
-        #     },
-        #     commit=True,
-        # )
+        wandb.log(
+            {
+                "model total norm": model_grad_norm,
+                "global model parameters norm": model_params_norm,
+                "round": i + 1,
+            },
+            commit=True,
+        )
 
         # Save round global model checkpoint
-        # if (
-        #     (i + 1) == num_rounds * 0.05
-        #     or (i + 1) == num_rounds * 0.25
-        #     or (i + 1) == num_rounds * 0.5
-        #     or (i + 1) == num_rounds * 0.75
-        # ):
-        #     where_saved = server.save_model(
-        #         i + 1,
-        #         os.path.join(
-        #             ckpt_path,
-        #             "round:"
-        #             + str(i + 1)
-        #             + "_"
-        #             + job_name
-        #             + "_"
-        #             + current_time
-        #             + ".ckpt",
-        #         ),
-        #         swa_n if args.swa else None,
-        #     )
-        # else:
-        #     where_saved = server.save_model(
-        #         i + 1, os.path.join(ckpt_path, ckpt_name), swa_n if args.swa else None
-        #     )
-        # wandb.save(where_saved)
-        # print("Checkpoint saved in path: %s" % where_saved)
+        if (
+            (i + 1) == num_rounds * 0.05
+            or (i + 1) == num_rounds * 0.25
+            or (i + 1) == num_rounds * 0.5
+            or (i + 1) == num_rounds * 0.75
+        ):
+            where_saved = server.save_model(
+                i + 1,
+                os.path.join(
+                    ckpt_path,
+                    "round:"
+                    + str(i + 1)
+                    + "_"
+                    + job_name
+                    + "_"
+                    + current_time
+                    + ".ckpt",
+                ),
+                swa_n if args.swa else None,
+            )
+        else:
+            where_saved = server.save_model(
+                i + 1, os.path.join(ckpt_path, ckpt_name), swa_n if args.swa else None
+            )
+        wandb.save(where_saved)
+        print("Checkpoint saved in path: %s" % where_saved)
         wandb.save(file)
 
     ## FINAL ANALYSIS ##
-    # where_saved = server.save_model(
-    #     num_rounds,
-    #     os.path.join(
-    #         ckpt_path,
-    #         "round:" + str(num_rounds) + "_" + job_name + "_" + current_time + ".ckpt",
-    #     ),
-    # )
-    # wandb.save(where_saved)
-    # print("Checkpoint saved in path: %s" % where_saved)
+    where_saved = server.save_model(
+        num_rounds,
+        os.path.join(
+            ckpt_path,
+            "round:" + str(num_rounds) + "_" + job_name + "_" + current_time + ".ckpt",
+        ),
+    )
+    wandb.save(where_saved)
+    print("Checkpoint saved in path: %s" % where_saved)
 
     if last_accuracies:
         avg_acc = sum(last_accuracies) / len(last_accuracies)
