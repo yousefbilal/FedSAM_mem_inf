@@ -19,6 +19,7 @@ checkpoints/
 models/results
 *.html
 
+.ipynb_checkpoints
 .vscode/*
 data/**
 !data/setup_datasets.sh
