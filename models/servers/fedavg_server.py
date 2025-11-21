@@ -69,7 +69,7 @@ class Server:
         for c in clients:
             c.model.load_state_dict(self.model)
             num_samples, update = c.train(num_epochs, batch_size, minibatch)
-            sys_metrics = self._update_sys_metrics(c, sys_metrics)
+            # sys_metrics = self._update_sys_metrics(c, sys_metrics)
             self.updates.append((num_samples, copy.deepcopy(update)))
 
         return sys_metrics

@@ -673,7 +673,7 @@ def training_run(
                 server.update_clients_lr(lr)
 
         ##### Simulate servers model training on selected clients' data #####
-        sys_metrics = server.train_model(
+        _ = server.train_model(
             num_epochs=args.num_epochs,
             batch_size=args.batch_size,
             minibatch=args.minibatch,
@@ -755,15 +755,15 @@ def training_run(
         wandb.save(file)
 
     ## FINAL ANALYSIS ##
-    where_saved = server.save_model(
-        num_rounds,
-        os.path.join(
-            ckpt_path,
-            "round:" + str(num_rounds) + "_" + job_name + "_" + current_time + ".ckpt",
-        ),
-    )
-    wandb.save(where_saved)
-    print("Checkpoint saved in path: %s" % where_saved)
+    # where_saved = server.save_model(
+    #     num_rounds,
+    #     os.path.join(
+    #         ckpt_path,
+    #         "round:" + str(num_rounds) + "_" + job_name + "_" + current_time + ".ckpt",
+    #     ),
+    # )
+    # wandb.save(where_saved)
+    # print("Checkpoint saved in path: %s" % where_saved)
 
     if last_accuracies:
         avg_acc = sum(last_accuracies) / len(last_accuracies)

@@ -32,7 +32,7 @@ class FedOptServer(Server):
         # Update global model according to chosen optimizer
         self._update_global_model_gradient(pseudo_gradient)
         self.model = copy.deepcopy(self.client_model.state_dict())
-        self.total_grad = self._get_model_total_grad()
+        # self.total_grad = self._get_model_total_grad()
         self.updates = []
         return
 
