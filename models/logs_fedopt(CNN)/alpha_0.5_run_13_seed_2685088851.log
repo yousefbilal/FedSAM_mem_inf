@@ -1,0 +1,1417 @@
+Alpha: alpha_0.50
+Using device: NVIDIA A100-SXM4-80GB
+############################## cifar10.cnn ##############################
+Running experiment with server servers.fedopt_server and client clients.sam_client
+Verify client and server: <class 'clients.sam_client.SAMClient'> <class 'servers.fedopt_server.FedOptServer'>
+Running influence estimation:   0%|          | 0/20 [00:00<?, ?it/s]wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 0uxjz4ab.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /home/mlr570t1/FedSAM_mem_inf-main/models/wandb/offline-run-20251121_192854-0uxjz4ab
+Server optimizer: sgd with lr 1.0 and momentum 0
+Start round: 0
+Clients in Total: 100 training clients and 1 test clients
+--- Random Initialization ---
+--- Round 1 of 10000: Training 5 Clients ---
+Selected clients: ['0', '50', '60', '15', '2']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 2 of 10000: Training 5 Clients ---
+Selected clients: ['40', '98', '65', '66', '57']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 3 of 10000: Training 5 Clients ---
+Selected clients: ['7', '55', '23', '33', '96']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 4 of 10000: Training 5 Clients ---
+Selected clients: ['80', '21', '29', '27', '42']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 5 of 10000: Training 5 Clients ---
+Selected clients: ['95', '3', '2', '1', '63']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 6 of 10000: Training 5 Clients ---
+Selected clients: ['48', '66', '54', '56', '24']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 7 of 10000: Training 5 Clients ---
+Selected clients: ['64', '32', '72', '73', '4']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 8 of 10000: Training 5 Clients ---
+Selected clients: ['57', '5', '45', '10', '42']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 9 of 10000: Training 5 Clients ---
+Selected clients: ['90', '68', '86', '12', '92']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 10 of 10000: Training 5 Clients ---
+Selected clients: ['0', '27', '39', '16', '32']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 11 of 10000: Training 5 Clients ---
+Selected clients: ['21', '33', '40', '85', '72']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 12 of 10000: Training 5 Clients ---
+Selected clients: ['60', '96', '42', '10', '68']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 13 of 10000: Training 5 Clients ---
+Selected clients: ['99', '85', '33', '11', '30']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 14 of 10000: Training 5 Clients ---
+Selected clients: ['61', '39', '0', '37', '59']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 15 of 10000: Training 5 Clients ---
+Selected clients: ['22', '10', '1', '87', '21']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 16 of 10000: Training 5 Clients ---
+Selected clients: ['61', '83', '41', '60', '38']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 17 of 10000: Training 5 Clients ---
+Selected clients: ['54', '18', '69', '43', '45']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 18 of 10000: Training 5 Clients ---
+Selected clients: ['45', '13', '1', '26', '57']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 19 of 10000: Training 5 Clients ---
+Selected clients: ['89', '6', '10', '34', '64']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 20 of 10000: Training 5 Clients ---
+Selected clients: ['31', '1', '97', '77', '40']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 21 of 10000: Training 5 Clients ---
+Selected clients: ['84', '93', '92', '8', '96']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 22 of 10000: Training 5 Clients ---
+Selected clients: ['29', '58', '35', '34', '30']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 23 of 10000: Training 5 Clients ---
+Selected clients: ['5', '61', '32', '94', '31']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 24 of 10000: Training 5 Clients ---
+Selected clients: ['50', '5', '53', '57', '17']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 25 of 10000: Training 5 Clients ---
+Selected clients: ['68', '51', '56', '96', '59']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 26 of 10000: Training 5 Clients ---
+Selected clients: ['73', '0', '53', '48', '11']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 27 of 10000: Training 5 Clients ---
+Selected clients: ['52', '51', '99', '46', '62']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 28 of 10000: Training 5 Clients ---
+Selected clients: ['83', '24', '58', '20', '0']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 29 of 10000: Training 5 Clients ---
+Selected clients: ['28', '14', '30', '12', '71']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 30 of 10000: Training 5 Clients ---
+Selected clients: ['88', '4', '64', '73', '38']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 31 of 10000: Training 5 Clients ---
+Selected clients: ['23', '0', '69', '76', '98']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 32 of 10000: Training 5 Clients ---
+Selected clients: ['44', '53', '5', '39', '57']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 33 of 10000: Training 5 Clients ---
+Selected clients: ['30', '44', '95', '36', '33']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 34 of 10000: Training 5 Clients ---
+Selected clients: ['49', '48', '90', '8', '55']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 35 of 10000: Training 5 Clients ---
+Selected clients: ['22', '72', '16', '10', '7']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 36 of 10000: Training 5 Clients ---
+Selected clients: ['56', '66', '19', '44', '28']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 37 of 10000: Training 5 Clients ---
+Selected clients: ['0', '65', '23', '66', '18']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 38 of 10000: Training 5 Clients ---
+Selected clients: ['41', '21', '90', '83', '2']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 39 of 10000: Training 5 Clients ---
+Selected clients: ['36', '39', '53', '19', '91']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 40 of 10000: Training 5 Clients ---
+Selected clients: ['74', '91', '47', '89', '26']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 41 of 10000: Training 5 Clients ---
+Selected clients: ['97', '4', '73', '15', '83']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 42 of 10000: Training 5 Clients ---
+Selected clients: ['19', '97', '36', '40', '74']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 43 of 10000: Training 5 Clients ---
+Selected clients: ['53', '96', '66', '0', '94']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 44 of 10000: Training 5 Clients ---
+Selected clients: ['79', '13', '14', '81', '34']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 45 of 10000: Training 5 Clients ---
+Selected clients: ['40', '31', '0', '32', '22']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 46 of 10000: Training 5 Clients ---
+Selected clients: ['99', '59', '79', '81', '28']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 47 of 10000: Training 5 Clients ---
+Selected clients: ['34', '37', '7', '36', '89']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 48 of 10000: Training 5 Clients ---
+Selected clients: ['38', '16', '35', '17', '83']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 49 of 10000: Training 5 Clients ---
+Selected clients: ['69', '34', '46', '36', '90']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 50 of 10000: Training 5 Clients ---
+Selected clients: ['91', '30', '2', '18', '12']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 51 of 10000: Training 5 Clients ---
+Selected clients: ['77', '56', '33', '46', '86']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 52 of 10000: Training 5 Clients ---
+Selected clients: ['90', '19', '81', '75', '23']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 53 of 10000: Training 5 Clients ---
+Selected clients: ['5', '77', '37', '65', '96']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 54 of 10000: Training 5 Clients ---
+Selected clients: ['5', '41', '48', '90', '82']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 55 of 10000: Training 5 Clients ---
+Selected clients: ['99', '44', '22', '90', '88']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 56 of 10000: Training 5 Clients ---
+Selected clients: ['65', '23', '31', '40', '71']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 57 of 10000: Training 5 Clients ---
+Selected clients: ['15', '80', '65', '53', '64']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 58 of 10000: Training 5 Clients ---
+Selected clients: ['47', '19', '18', '94', '31']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 59 of 10000: Training 5 Clients ---
+Selected clients: ['4', '87', '34', '50', '61']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 60 of 10000: Training 5 Clients ---
+Selected clients: ['82', '52', '84', '65', '49']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 61 of 10000: Training 5 Clients ---
+Selected clients: ['88', '38', '64', '13', '47']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 62 of 10000: Training 5 Clients ---
+Selected clients: ['55', '97', '60', '93', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 63 of 10000: Training 5 Clients ---
+Selected clients: ['41', '55', '62', '82', '33']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 64 of 10000: Training 5 Clients ---
+Selected clients: ['12', '86', '33', '87', '91']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 65 of 10000: Training 5 Clients ---
+Selected clients: ['68', '1', '52', '25', '22']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 66 of 10000: Training 5 Clients ---
+Selected clients: ['29', '24', '94', '74', '65']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 67 of 10000: Training 5 Clients ---
+Selected clients: ['4', '9', '70', '76', '78']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 68 of 10000: Training 5 Clients ---
+Selected clients: ['10', '48', '53', '41', '13']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 69 of 10000: Training 5 Clients ---
+Selected clients: ['2', '58', '44', '9', '8']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 70 of 10000: Training 5 Clients ---
+Selected clients: ['63', '74', '78', '97', '50']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 71 of 10000: Training 5 Clients ---
+Selected clients: ['42', '87', '28', '58', '83']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 72 of 10000: Training 5 Clients ---
+Selected clients: ['42', '25', '68', '69', '93']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 73 of 10000: Training 5 Clients ---
+Selected clients: ['75', '45', '50', '68', '9']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 74 of 10000: Training 5 Clients ---
+Selected clients: ['67', '83', '43', '19', '77']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 75 of 10000: Training 5 Clients ---
+Selected clients: ['66', '69', '58', '83', '47']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 76 of 10000: Training 5 Clients ---
+Selected clients: ['33', '98', '23', '83', '64']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 77 of 10000: Training 5 Clients ---
+Selected clients: ['56', '23', '62', '45', '43']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 78 of 10000: Training 5 Clients ---
+Selected clients: ['30', '14', '94', '8', '35']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 79 of 10000: Training 5 Clients ---
+Selected clients: ['73', '72', '14', '26', '51']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 80 of 10000: Training 5 Clients ---
+Selected clients: ['77', '58', '62', '51', '68']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 81 of 10000: Training 5 Clients ---
+Selected clients: ['5', '35', '29', '54', '9']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 82 of 10000: Training 5 Clients ---
+Selected clients: ['24', '98', '57', '8', '55']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 83 of 10000: Training 5 Clients ---
+Selected clients: ['30', '86', '32', '29', '85']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 84 of 10000: Training 5 Clients ---
+Selected clients: ['82', '44', '45', '52', '21']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 85 of 10000: Training 5 Clients ---
+Selected clients: ['19', '38', '29', '71', '25']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 86 of 10000: Training 5 Clients ---
+Selected clients: ['74', '35', '84', '42', '58']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 87 of 10000: Training 5 Clients ---
+Selected clients: ['49', '63', '70', '93', '83']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 88 of 10000: Training 5 Clients ---
+Selected clients: ['96', '95', '77', '72', '21']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 89 of 10000: Training 5 Clients ---
+Selected clients: ['74', '54', '73', '22', '92']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 90 of 10000: Training 5 Clients ---
+Selected clients: ['16', '75', '72', '66', '4']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 91 of 10000: Training 5 Clients ---
+Selected clients: ['72', '46', '76', '56', '2']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 92 of 10000: Training 5 Clients ---
+Selected clients: ['98', '1', '65', '4', '83']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 93 of 10000: Training 5 Clients ---
+Selected clients: ['55', '61', '21', '17', '53']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 94 of 10000: Training 5 Clients ---
+Selected clients: ['31', '30', '37', '61', '52']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 95 of 10000: Training 5 Clients ---
+Selected clients: ['64', '20', '96', '0', '85']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 96 of 10000: Training 5 Clients ---
+Selected clients: ['11', '14', '81', '22', '91']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 97 of 10000: Training 5 Clients ---
+Selected clients: ['13', '11', '99', '50', '26']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 98 of 10000: Training 5 Clients ---
+Selected clients: ['33', '29', '60', '26', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 99 of 10000: Training 5 Clients ---
+Selected clients: ['96', '41', '8', '69', '45']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 100 of 10000: Training 5 Clients ---
+Selected clients: ['31', '77', '72', '54', '73']
+--- Updating central model ---
+train_accuracy: 10.0171, 10th percentile: 0, 50th percentile: 3.83033, 90th percentile 26.0996
+train_loss: 2.29958, 10th percentile: 2.27898, 50th percentile: 2.30159, 90th percentile 2.32154
+test_accuracy: 10, 10th percentile: 10, 50th percentile: 10, 90th percentile 10
+test_loss: 2.29962, 10th percentile: 2.29962, 50th percentile: 2.29962, 90th percentile 2.29962
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 101 of 10000: Training 5 Clients ---
+Selected clients: ['50', '4', '30', '82', '80']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 102 of 10000: Training 5 Clients ---
+Selected clients: ['5', '39', '4', '82', '23']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 103 of 10000: Training 5 Clients ---
+Selected clients: ['52', '71', '63', '77', '18']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 104 of 10000: Training 5 Clients ---
+Selected clients: ['64', '44', '72', '59', '31']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 105 of 10000: Training 5 Clients ---
+Selected clients: ['24', '69', '41', '91', '60']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 106 of 10000: Training 5 Clients ---
+Selected clients: ['79', '52', '46', '71', '60']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 107 of 10000: Training 5 Clients ---
+Selected clients: ['90', '8', '38', '61', '21']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 108 of 10000: Training 5 Clients ---
+Selected clients: ['78', '15', '38', '67', '5']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 109 of 10000: Training 5 Clients ---
+Selected clients: ['76', '15', '55', '29', '25']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 110 of 10000: Training 5 Clients ---
+Selected clients: ['37', '94', '99', '64', '95']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 111 of 10000: Training 5 Clients ---
+Selected clients: ['73', '10', '84', '74', '45']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 112 of 10000: Training 5 Clients ---
+Selected clients: ['71', '49', '78', '39', '64']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 113 of 10000: Training 5 Clients ---
+Selected clients: ['76', '9', '17', '16', '99']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 114 of 10000: Training 5 Clients ---
+Selected clients: ['87', '64', '22', '5', '82']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 115 of 10000: Training 5 Clients ---
+Selected clients: ['58', '71', '35', '61', '46']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 116 of 10000: Training 5 Clients ---
+Selected clients: ['9', '67', '70', '62', '19']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 117 of 10000: Training 5 Clients ---
+Selected clients: ['83', '77', '71', '37', '65']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 118 of 10000: Training 5 Clients ---
+Selected clients: ['32', '70', '10', '43', '33']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 119 of 10000: Training 5 Clients ---
+Selected clients: ['33', '60', '82', '25', '93']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 120 of 10000: Training 5 Clients ---
+Selected clients: ['79', '82', '7', '15', '61']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 121 of 10000: Training 5 Clients ---
+Selected clients: ['20', '38', '83', '78', '86']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 122 of 10000: Training 5 Clients ---
+Selected clients: ['88', '18', '85', '45', '47']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 123 of 10000: Training 5 Clients ---
+Selected clients: ['63', '72', '21', '73', '36']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 124 of 10000: Training 5 Clients ---
+Selected clients: ['15', '95', '11', '61', '22']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 125 of 10000: Training 5 Clients ---
+Selected clients: ['11', '28', '29', '23', '62']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 126 of 10000: Training 5 Clients ---
+Selected clients: ['41', '47', '85', '67', '59']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 127 of 10000: Training 5 Clients ---
+Selected clients: ['30', '4', '94', '26', '98']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 128 of 10000: Training 5 Clients ---
+Selected clients: ['22', '96', '78', '16', '61']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 129 of 10000: Training 5 Clients ---
+Selected clients: ['3', '69', '55', '70', '79']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 130 of 10000: Training 5 Clients ---
+Selected clients: ['90', '31', '14', '21', '59']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 131 of 10000: Training 5 Clients ---
+Selected clients: ['54', '72', '87', '68', '25']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 132 of 10000: Training 5 Clients ---
+Selected clients: ['19', '24', '47', '73', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 133 of 10000: Training 5 Clients ---
+Selected clients: ['39', '69', '67', '93', '80']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 134 of 10000: Training 5 Clients ---
+Selected clients: ['5', '16', '20', '74', '28']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 135 of 10000: Training 5 Clients ---
+Selected clients: ['71', '2', '18', '10', '91']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 136 of 10000: Training 5 Clients ---
+Selected clients: ['32', '34', '59', '92', '40']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 137 of 10000: Training 5 Clients ---
+Selected clients: ['70', '64', '48', '55', '44']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 138 of 10000: Training 5 Clients ---
+Selected clients: ['66', '33', '43', '59', '79']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 139 of 10000: Training 5 Clients ---
+Selected clients: ['13', '59', '91', '50', '19']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 140 of 10000: Training 5 Clients ---
+Selected clients: ['55', '37', '69', '44', '47']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 141 of 10000: Training 5 Clients ---
+Selected clients: ['17', '9', '16', '28', '29']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 142 of 10000: Training 5 Clients ---
+Selected clients: ['47', '3', '51', '78', '99']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 143 of 10000: Training 5 Clients ---
+Selected clients: ['9', '0', '78', '4', '29']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 144 of 10000: Training 5 Clients ---
+Selected clients: ['27', '90', '23', '74', '14']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 145 of 10000: Training 5 Clients ---
+Selected clients: ['98', '80', '93', '52', '63']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 146 of 10000: Training 5 Clients ---
+Selected clients: ['69', '14', '57', '11', '19']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 147 of 10000: Training 5 Clients ---
+Selected clients: ['19', '98', '74', '33', '91']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 148 of 10000: Training 5 Clients ---
+Selected clients: ['28', '90', '41', '51', '53']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 149 of 10000: Training 5 Clients ---
+Selected clients: ['88', '63', '85', '30', '4']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 150 of 10000: Training 5 Clients ---
+Selected clients: ['83', '71', '53', '45', '20']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 151 of 10000: Training 5 Clients ---
+Selected clients: ['19', '75', '86', '85', '11']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 152 of 10000: Training 5 Clients ---
+Selected clients: ['25', '51', '37', '95', '42']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 153 of 10000: Training 5 Clients ---
+Selected clients: ['86', '75', '13', '59', '43']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 154 of 10000: Training 5 Clients ---
+Selected clients: ['36', '64', '27', '75', '66']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 155 of 10000: Training 5 Clients ---
+Selected clients: ['82', '67', '7', '95', '5']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 156 of 10000: Training 5 Clients ---
+Selected clients: ['86', '25', '47', '37', '79']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 157 of 10000: Training 5 Clients ---
+Selected clients: ['29', '63', '98', '90', '67']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 158 of 10000: Training 5 Clients ---
+Selected clients: ['91', '34', '60', '1', '82']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 159 of 10000: Training 5 Clients ---
+Selected clients: ['79', '87', '68', '59', '10']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 160 of 10000: Training 5 Clients ---
+Selected clients: ['58', '28', '78', '90', '36']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 161 of 10000: Training 5 Clients ---
+Selected clients: ['0', '49', '48', '14', '27']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 162 of 10000: Training 5 Clients ---
+Selected clients: ['10', '38', '34', '63', '13']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 163 of 10000: Training 5 Clients ---
+Selected clients: ['2', '10', '99', '5', '56']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 164 of 10000: Training 5 Clients ---
+Selected clients: ['33', '74', '93', '47', '94']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 165 of 10000: Training 5 Clients ---
+Selected clients: ['5', '76', '72', '71', '17']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 166 of 10000: Training 5 Clients ---
+Selected clients: ['70', '2', '26', '29', '79']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 167 of 10000: Training 5 Clients ---
+Selected clients: ['41', '8', '78', '60', '99']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 168 of 10000: Training 5 Clients ---
+Selected clients: ['5', '52', '27', '97', '73']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 169 of 10000: Training 5 Clients ---
+Selected clients: ['75', '16', '49', '39', '1']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 170 of 10000: Training 5 Clients ---
+Selected clients: ['1', '97', '4', '92', '26']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 171 of 10000: Training 5 Clients ---
+Selected clients: ['59', '93', '55', '99', '97']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 172 of 10000: Training 5 Clients ---
+Selected clients: ['16', '98', '63', '12', '81']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 173 of 10000: Training 5 Clients ---
+Selected clients: ['58', '30', '2', '63', '73']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 174 of 10000: Training 5 Clients ---
+Selected clients: ['30', '10', '95', '88', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 175 of 10000: Training 5 Clients ---
+Selected clients: ['57', '85', '11', '74', '98']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 176 of 10000: Training 5 Clients ---
+Selected clients: ['64', '9', '78', '35', '50']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 177 of 10000: Training 5 Clients ---
+Selected clients: ['64', '11', '29', '85', '6']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 178 of 10000: Training 5 Clients ---
+Selected clients: ['0', '3', '9', '95', '1']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 179 of 10000: Training 5 Clients ---
+Selected clients: ['0', '5', '97', '38', '48']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 180 of 10000: Training 5 Clients ---
+Selected clients: ['26', '39', '6', '28', '74']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 181 of 10000: Training 5 Clients ---
+Selected clients: ['67', '56', '69', '65', '21']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 182 of 10000: Training 5 Clients ---
+Selected clients: ['48', '67', '81', '26', '1']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 183 of 10000: Training 5 Clients ---
+Selected clients: ['59', '28', '61', '83', '76']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 184 of 10000: Training 5 Clients ---
+Selected clients: ['73', '46', '4', '28', '19']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 185 of 10000: Training 5 Clients ---
+Selected clients: ['93', '9', '71', '56', '65']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 186 of 10000: Training 5 Clients ---
+Selected clients: ['0', '48', '98', '5', '14']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 187 of 10000: Training 5 Clients ---
+Selected clients: ['78', '14', '20', '13', '5']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 188 of 10000: Training 5 Clients ---
+Selected clients: ['70', '91', '3', '51', '23']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 189 of 10000: Training 5 Clients ---
+Selected clients: ['32', '23', '96', '62', '83']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 190 of 10000: Training 5 Clients ---
+Selected clients: ['55', '93', '40', '88', '43']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 191 of 10000: Training 5 Clients ---
+Selected clients: ['88', '15', '53', '79', '22']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 192 of 10000: Training 5 Clients ---
+Selected clients: ['10', '93', '63', '81', '98']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 193 of 10000: Training 5 Clients ---
+Selected clients: ['97', '91', '77', '31', '68']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 194 of 10000: Training 5 Clients ---
+Selected clients: ['76', '29', '53', '7', '48']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 195 of 10000: Training 5 Clients ---
+Selected clients: ['71', '30', '73', '85', '26']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 196 of 10000: Training 5 Clients ---
+Selected clients: ['37', '32', '2', '27', '61']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 197 of 10000: Training 5 Clients ---
+Selected clients: ['4', '32', '5', '48', '41']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 198 of 10000: Training 5 Clients ---
+Selected clients: ['10', '98', '15', '4', '86']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 199 of 10000: Training 5 Clients ---
+Selected clients: ['16', '10', '33', '58', '19']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 200 of 10000: Training 5 Clients ---
+Selected clients: ['83', '55', '51', '41', '32']
+--- Updating central model ---
+train_accuracy: 10.3571, 10th percentile: 0.380008, 50th percentile: 4.45943, 90th percentile 25.7285
+train_loss: 2.28332, 10th percentile: 2.25219, 50th percentile: 2.28809, 90th percentile 2.31473
+test_accuracy: 10.41, 10th percentile: 10.41, 50th percentile: 10.41, 90th percentile 10.41
+test_loss: 2.28262, 10th percentile: 2.28262, 50th percentile: 2.28262, 90th percentile 2.28262
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 201 of 10000: Training 5 Clients ---
+Selected clients: ['69', '57', '28', '50', '90']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 202 of 10000: Training 5 Clients ---
+Selected clients: ['33', '74', '20', '43', '77']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 203 of 10000: Training 5 Clients ---
+Selected clients: ['20', '64', '30', '97', '18']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 204 of 10000: Training 5 Clients ---
+Selected clients: ['65', '21', '2', '95', '99']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 205 of 10000: Training 5 Clients ---
+Selected clients: ['33', '45', '42', '5', '32']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 206 of 10000: Training 5 Clients ---
+Selected clients: ['0', '27', '50', '51', '36']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 207 of 10000: Training 5 Clients ---
+Selected clients: ['88', '20', '29', '74', '73']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 208 of 10000: Training 5 Clients ---
+Selected clients: ['14', '76', '20', '11', '47']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 209 of 10000: Training 5 Clients ---
+Selected clients: ['53', '96', '87', '38', '14']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 210 of 10000: Training 5 Clients ---
+Selected clients: ['4', '38', '44', '98', '85']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 211 of 10000: Training 5 Clients ---
+Selected clients: ['67', '36', '9', '91', '4']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 212 of 10000: Training 5 Clients ---
+Selected clients: ['77', '72', '35', '13', '17']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 213 of 10000: Training 5 Clients ---
+Selected clients: ['16', '91', '35', '17', '87']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 214 of 10000: Training 5 Clients ---
+Selected clients: ['20', '95', '8', '34', '0']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 215 of 10000: Training 5 Clients ---
+Selected clients: ['45', '46', '68', '84', '24']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 216 of 10000: Training 5 Clients ---
+Selected clients: ['37', '50', '64', '99', '48']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 217 of 10000: Training 5 Clients ---
+Selected clients: ['0', '76', '8', '74', '32']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 218 of 10000: Training 5 Clients ---
+Selected clients: ['46', '54', '21', '6', '71']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 219 of 10000: Training 5 Clients ---
+Selected clients: ['11', '5', '2', '81', '44']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 220 of 10000: Training 5 Clients ---
+Selected clients: ['10', '81', '46', '12', '68']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 221 of 10000: Training 5 Clients ---
+Selected clients: ['3', '33', '22', '97', '68']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 222 of 10000: Training 5 Clients ---
+Selected clients: ['87', '92', '70', '48', '88']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 223 of 10000: Training 5 Clients ---
+Selected clients: ['53', '88', '97', '14', '50']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 224 of 10000: Training 5 Clients ---
+Selected clients: ['38', '81', '99', '79', '35']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 225 of 10000: Training 5 Clients ---
+Selected clients: ['72', '13', '29', '36', '23']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 226 of 10000: Training 5 Clients ---
+Selected clients: ['9', '27', '3', '8', '59']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 227 of 10000: Training 5 Clients ---
+Selected clients: ['92', '47', '9', '83', '64']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 228 of 10000: Training 5 Clients ---
+Selected clients: ['63', '58', '31', '27', '42']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 229 of 10000: Training 5 Clients ---
+Selected clients: ['88', '55', '19', '87', '82']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 230 of 10000: Training 5 Clients ---
+Selected clients: ['20', '60', '6', '86', '78']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 231 of 10000: Training 5 Clients ---
+Selected clients: ['34', '49', '88', '24', '60']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 232 of 10000: Training 5 Clients ---
+Selected clients: ['34', '94', '88', '19', '57']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 233 of 10000: Training 5 Clients ---
+Selected clients: ['63', '24', '3', '49', '8']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 234 of 10000: Training 5 Clients ---
+Selected clients: ['43', '93', '82', '67', '83']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 235 of 10000: Training 5 Clients ---
+Selected clients: ['79', '48', '97', '66', '65']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 236 of 10000: Training 5 Clients ---
+Selected clients: ['89', '18', '79', '31', '71']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 237 of 10000: Training 5 Clients ---
+Selected clients: ['36', '44', '55', '41', '80']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 238 of 10000: Training 5 Clients ---
+Selected clients: ['94', '0', '42', '91', '68']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 239 of 10000: Training 5 Clients ---
+Selected clients: ['29', '49', '1', '34', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 240 of 10000: Training 5 Clients ---
+Selected clients: ['73', '41', '37', '87', '95']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 241 of 10000: Training 5 Clients ---
+Selected clients: ['10', '84', '34', '7', '66']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 242 of 10000: Training 5 Clients ---
+Selected clients: ['24', '22', '37', '12', '27']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 243 of 10000: Training 5 Clients ---
+Selected clients: ['36', '9', '22', '56', '96']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 244 of 10000: Training 5 Clients ---
+Selected clients: ['73', '74', '4', '96', '42']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 245 of 10000: Training 5 Clients ---
+Selected clients: ['51', '52', '74', '10', '96']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 246 of 10000: Training 5 Clients ---
+Selected clients: ['30', '2', '7', '1', '90']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 247 of 10000: Training 5 Clients ---
+Selected clients: ['73', '76', '8', '74', '91']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 248 of 10000: Training 5 Clients ---
+Selected clients: ['45', '24', '26', '96', '21']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 249 of 10000: Training 5 Clients ---
+Selected clients: ['34', '49', '21', '58', '81']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 250 of 10000: Training 5 Clients ---
+Selected clients: ['88', '81', '42', '96', '49']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 251 of 10000: Training 5 Clients ---
+Selected clients: ['79', '71', '92', '68', '95']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 252 of 10000: Training 5 Clients ---
+Selected clients: ['25', '52', '24', '76', '56']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 253 of 10000: Training 5 Clients ---
+Selected clients: ['13', '11', '84', '20', '34']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 254 of 10000: Training 5 Clients ---
+Selected clients: ['32', '57', '5', '21', '1']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 255 of 10000: Training 5 Clients ---
+Selected clients: ['41', '5', '77', '26', '22']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 256 of 10000: Training 5 Clients ---
+Selected clients: ['25', '60', '40', '56', '50']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 257 of 10000: Training 5 Clients ---
+Selected clients: ['95', '82', '90', '43', '50']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 258 of 10000: Training 5 Clients ---
+Selected clients: ['6', '79', '17', '21', '14']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 259 of 10000: Training 5 Clients ---
+Selected clients: ['48', '85', '30', '2', '82']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 260 of 10000: Training 5 Clients ---
+Selected clients: ['1', '79', '23', '89', '59']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 261 of 10000: Training 5 Clients ---
+Selected clients: ['34', '83', '40', '39', '97']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 262 of 10000: Training 5 Clients ---
+Selected clients: ['43', '14', '9', '57', '88']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 263 of 10000: Training 5 Clients ---
+Selected clients: ['25', '55', '40', '36', '57']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 264 of 10000: Training 5 Clients ---
+Selected clients: ['37', '35', '17', '25', '69']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 265 of 10000: Training 5 Clients ---
+Selected clients: ['27', '74', '35', '72', '52']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 266 of 10000: Training 5 Clients ---
+Selected clients: ['36', '59', '40', '98', '79']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 267 of 10000: Training 5 Clients ---
+Selected clients: ['76', '78', '39', '30', '99']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 268 of 10000: Training 5 Clients ---
+Selected clients: ['80', '63', '46', '43', '86']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 269 of 10000: Training 5 Clients ---
+Selected clients: ['44', '68', '7', '93', '87']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 270 of 10000: Training 5 Clients ---
+Selected clients: ['90', '85', '96', '91', '53']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 271 of 10000: Training 5 Clients ---
+Selected clients: ['28', '87', '99', '94', '91']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 272 of 10000: Training 5 Clients ---
+Selected clients: ['35', '68', '21', '23', '40']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 273 of 10000: Training 5 Clients ---
+Selected clients: ['18', '86', '25', '62', '2']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 274 of 10000: Training 5 Clients ---
+Selected clients: ['45', '83', '21', '49', '51']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 275 of 10000: Training 5 Clients ---
+Selected clients: ['1', '46', '94', '28', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 276 of 10000: Training 5 Clients ---
+Selected clients: ['87', '71', '75', '5', '69']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 277 of 10000: Training 5 Clients ---
+Selected clients: ['66', '21', '84', '74', '26']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 278 of 10000: Training 5 Clients ---
+Selected clients: ['27', '77', '15', '82', '73']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 279 of 10000: Training 5 Clients ---
+Selected clients: ['28', '25', '85', '9', '97']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 280 of 10000: Training 5 Clients ---
+Selected clients: ['88', '80', '92', '99', '87']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 281 of 10000: Training 5 Clients ---
+Selected clients: ['79', '43', '96', '22', '98']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 282 of 10000: Training 5 Clients ---
+Selected clients: ['69', '93', '22', '99', '94']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 283 of 10000: Training 5 Clients ---
+Selected clients: ['81', '35', '39', '45', '54']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 284 of 10000: Training 5 Clients ---
+Selected clients: ['40', '71', '27', '41', '8']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 285 of 10000: Training 5 Clients ---
+Selected clients: ['39', '97', '62', '54', '69']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 286 of 10000: Training 5 Clients ---
+Selected clients: ['98', '70', '11', '41', '78']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 287 of 10000: Training 5 Clients ---
+Selected clients: ['94', '2', '59', '11', '70']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 288 of 10000: Training 5 Clients ---
+Selected clients: ['99', '83', '88', '84', '95']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 289 of 10000: Training 5 Clients ---
+Selected clients: ['86', '41', '37', '20', '73']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 290 of 10000: Training 5 Clients ---
+Selected clients: ['53', '84', '1', '54', '74']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 291 of 10000: Training 5 Clients ---
+Selected clients: ['86', '99', '97', '84', '30']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 292 of 10000: Training 5 Clients ---
+Selected clients: ['96', '35', '64', '27', '82']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 293 of 10000: Training 5 Clients ---
+Selected clients: ['90', '25', '64', '80', '73']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 294 of 10000: Training 5 Clients ---
+Selected clients: ['39', '74', '30', '24', '68']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 295 of 10000: Training 5 Clients ---
+Selected clients: ['73', '40', '50', '41', '85']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 296 of 10000: Training 5 Clients ---
+Selected clients: ['5', '90', '50', '75', '2']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 297 of 10000: Training 5 Clients ---
+Selected clients: ['15', '24', '97', '23', '81']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 298 of 10000: Training 5 Clients ---
+Selected clients: ['38', '85', '55', '96', '58']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 299 of 10000: Training 5 Clients ---
+Selected clients: ['92', '73', '61', '35', '95']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 300 of 10000: Training 5 Clients ---
+Selected clients: ['88', '41', '94', '56', '71']
+--- Updating central model ---
+train_accuracy: 19.3257, 10th percentile: 6.77227, 50th percentile: 15.6987, 90th percentile 35.4805
+train_loss: 2.10844, 10th percentile: 1.97703, 50th percentile: 2.12108, 90th percentile 2.2059
+test_accuracy: 19.84, 10th percentile: 19.84, 50th percentile: 19.84, 90th percentile 19.84
+test_loss: 2.10089, 10th percentile: 2.10089, 50th percentile: 2.10089, 90th percentile 2.10089
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 301 of 10000: Training 5 Clients ---
+Selected clients: ['29', '25', '30', '37', '66']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 302 of 10000: Training 5 Clients ---
+Selected clients: ['35', '47', '85', '37', '3']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 303 of 10000: Training 5 Clients ---
+Selected clients: ['64', '90', '53', '48', '97']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 304 of 10000: Training 5 Clients ---
+Selected clients: ['69', '41', '75', '25', '63']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 305 of 10000: Training 5 Clients ---
+Selected clients: ['99', '98', '96', '67', '41']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 306 of 10000: Training 5 Clients ---
+Selected clients: ['12', '85', '45', '26', '81']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 307 of 10000: Training 5 Clients ---
+Selected clients: ['61', '97', '78', '83', '66']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 308 of 10000: Training 5 Clients ---
+Selected clients: ['56', '59', '95', '37', '61']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 309 of 10000: Training 5 Clients ---
+Selected clients: ['34', '70', '90', '24', '66']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 310 of 10000: Training 5 Clients ---
+Selected clients: ['34', '84', '44', '97', '54']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 311 of 10000: Training 5 Clients ---
+Selected clients: ['5', '53', '95', '4', '52']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 312 of 10000: Training 5 Clients ---
+Selected clients: ['76', '15', '16', '87', '59']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 313 of 10000: Training 5 Clients ---
+Selected clients: ['92', '36', '38', '6', '28']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 314 of 10000: Training 5 Clients ---
+Selected clients: ['27', '39', '11', '77', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 315 of 10000: Training 5 Clients ---
+Selected clients: ['43', '96', '94', '37', '95']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 316 of 10000: Training 5 Clients ---
+Selected clients: ['56', '11', '5', '72', '98']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 317 of 10000: Training 5 Clients ---
+Selected clients: ['75', '93', '38', '0', '45']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 318 of 10000: Training 5 Clients ---
+Selected clients: ['12', '54', '43', '23', '56']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 319 of 10000: Training 5 Clients ---
+Selected clients: ['92', '17', '54', '42', '48']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 320 of 10000: Training 5 Clients ---
+Selected clients: ['40', '20', '47', '65', '96']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 321 of 10000: Training 5 Clients ---
+Selected clients: ['16', '44', '20', '43', '34']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 322 of 10000: Training 5 Clients ---
+Selected clients: ['47', '68', '29', '65', '41']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 323 of 10000: Training 5 Clients ---
+Selected clients: ['55', '26', '51', '43', '22']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 324 of 10000: Training 5 Clients ---
+Selected clients: ['80', '63', '17', '27', '33']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 325 of 10000: Training 5 Clients ---
+Selected clients: ['36', '91', '87', '89', '80']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 326 of 10000: Training 5 Clients ---
+Selected clients: ['56', '93', '20', '18', '84']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 327 of 10000: Training 5 Clients ---
+Selected clients: ['34', '83', '91', '46', '5']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 328 of 10000: Training 5 Clients ---
+Selected clients: ['96', '59', '88', '86', '0']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 329 of 10000: Training 5 Clients ---
+Selected clients: ['42', '60', '92', '71', '12']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 330 of 10000: Training 5 Clients ---
+Selected clients: ['91', '4', '17', '34', '39']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 331 of 10000: Training 5 Clients ---
+Selected clients: ['8', '47', '61', '30', '53']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 332 of 10000: Training 5 Clients ---
+Selected clients: ['89', '92', '58', '26', '75']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 333 of 10000: Training 5 Clients ---
+Selected clients: ['92', '25', '38', '39', '18']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 334 of 10000: Training 5 Clients ---
+Selected clients: ['53', '58', '37', '97', '81']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 335 of 10000: Training 5 Clients ---
+Selected clients: ['97', '98', '89', '0', '32']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 336 of 10000: Training 5 Clients ---
+Selected clients: ['93', '39', '19', '76', '2']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 337 of 10000: Training 5 Clients ---
+Selected clients: ['87', '59', '23', '77', '57']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 338 of 10000: Training 5 Clients ---
+Selected clients: ['64', '52', '27', '61', '15']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 339 of 10000: Training 5 Clients ---
+Selected clients: ['38', '46', '70', '22', '90']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 340 of 10000: Training 5 Clients ---
+Selected clients: ['38', '86', '12', '64', '47']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 341 of 10000: Training 5 Clients ---
+Selected clients: ['57', '78', '64', '43', '94']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 342 of 10000: Training 5 Clients ---
+Selected clients: ['69', '45', '74', '6', '60']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 343 of 10000: Training 5 Clients ---
+Selected clients: ['10', '42', '68', '3', '36']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 344 of 10000: Training 5 Clients ---
+Selected clients: ['10', '18', '21', '98', '24']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 345 of 10000: Training 5 Clients ---
+Selected clients: ['20', '98', '71', '33', '10']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 346 of 10000: Training 5 Clients ---
+Selected clients: ['82', '90', '89', '72', '2']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 347 of 10000: Training 5 Clients ---
+Selected clients: ['37', '67', '23', '44', '70']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt
+--- Round 348 of 10000: Training 5 Clients ---
+Selected clients: ['72', '62', '74', '55', '48']
+--- Updating central model ---
+Checkpoint saved in path: checkpoints/cifar10/alpha0.5_K5_N10000_cnn_E1_clr0.01_fedopt_sgd_slr1.0_sam_rho0.1_112125_19:29:23.ckpt

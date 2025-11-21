@@ -5,7 +5,7 @@ set -euo pipefail
 DATASET="cifar10"
 N_RUNS="${1:-3}"        # how many runs to launch (default 3, override via arg)
 ALPHA="${2:-0.5}"       # alpha value (default 0.5, override via arg)
-LOGDIR="logs_fedopt"
+LOGDIR="logs_fedopt_resnet18"
 DEVICE="cuda:0"
 # ---------------------------------------
 
@@ -28,7 +28,7 @@ for ((i=0; i<N_RUNS; i++)); do
         --batch-size 64 \
         --num-epochs 1 \
         --clients-per-round 5 \
-        -model cnn \
+        -model resnet18 \
         -lr 0.01 \
         --weight-decay 0.0004 \
         -device "$DEVICE" \
@@ -42,7 +42,7 @@ for ((i=0; i<N_RUNS; i++)); do
         -rho 0.1 \
         -eta 0 \
         --n-clients 100 \
-        --influence_runs 40 \
+        --influence_runs 20 \
         --seed "$SEED" \
         --imagenet-pretrained \
         > "$LOGFILE" 2>&1 &
