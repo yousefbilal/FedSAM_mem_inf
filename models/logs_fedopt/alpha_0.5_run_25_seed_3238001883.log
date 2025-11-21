@@ -1,4 +1,0 @@
-  File "/home/mlr570t1/FedSAM_mem_inf-main/models/main.py", line 150
-    root_name += f"_{args.client_algorithm}_{i_run}_{}_{args.seed}_correctness.npz"
-                                                                                   ^
-SyntaxError: f-string: empty expression not allowed

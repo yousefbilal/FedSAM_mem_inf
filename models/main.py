@@ -144,19 +144,26 @@ def main():
             args, final_model, test_data["100"], device, ClientDataset, False, 64
         )
 
-        root_name, _ = os.path.splitext(file_name)
-        root_name = "_".join(root_name.split("_")[:-2])
+        dir_name = os.path.dirname(file_name)
+        base = os.path.splitext(os.path.basename(file_name))[0]
 
-        root_name += f"_{args.client_algorithm}_{i_run}_{}_{args.seed}_correctness.npz"
+        algo_tag = args.algorithm
+        if args.client_algorithm:
+            algo_tag += f"_{args.client_algorithm}"
+        clients_tag = f"nC{args.n_clients}"
+        imagenet_tag = ("imgnet" if getattr(args, "imagenet_pretrained", False)
+                        else "scratch")
 
+        per_run_name = f"{base}_{algo_tag}_{clients_tag}_{imagenet_tag}_run{i_run}_seed{args.seed}_correctness.npz"
+        save_path = os.path.join(dir_name, per_run_name)
         np.savez_compressed(
-            root_name,
+            save_path,
             subset_mask=subset_mask,
             train_correctness=train_correctness,
             test_correctness=test_correctness,
         )
         
-        print("Saved to", root_name)
+        print("Saved to", save_path)
 
         results.append(
             {
@@ -559,8 +566,8 @@ def training_run(
     # Create client model, and share params with servers model
     client_model_kwargs = {}
     sig = inspect.signature(ClientModel.__init__) # check if it can use imagenet weights
-    if "use_imagenet_weights" in sig.parameters:
-        client_model_kwargs["use_imagenet_weights"] = args.imagenet_pretrained
+    if "use_imagenet" in sig.parameters:
+        client_model_kwargs["use_imagenet"] = args.imagenet_pretrained
     client_model = ClientModel(*model_params, device, **client_model_kwargs)
     if args.load and wandb.run.resumed:  # load model from checkpoint
         client_model, checkpoint, ckpt_path_resumed = resume_run(

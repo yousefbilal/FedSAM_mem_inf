@@ -44,6 +44,7 @@ for ((i=0; i<N_RUNS; i++)); do
         --n-clients 100 \
         --influence_runs 40 \
         --seed "$SEED" \
+        --imagenet-pretrained \
         > "$LOGFILE" 2>&1 &
 done
 
