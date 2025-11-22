@@ -719,62 +719,62 @@ def training_run(
             # if (i + 1) > num_rounds - 100:
             #     last_accuracies.append(test_metrics[0])
 
-        ### Gradients information ###
-        model_grad_norm = server.get_model_grad()
-        grad_by_param = server.get_model_grad_by_param()
-        for param, grad in grad_by_param.items():
-            name = "params_grad/" + param
-            wandb.log({name: grad}, commit=False)
-        model_params_norm = server.get_model_params_norm()
+        # ### Gradients information ###
+        # model_grad_norm = server.get_model_grad()
+        # grad_by_param = server.get_model_grad_by_param()
+        # for param, grad in grad_by_param.items():
+        #     name = "params_grad/" + param
+        #     wandb.log({name: grad}, commit=False)
+        # model_params_norm = server.get_model_params_norm()
 
-        wandb.log(
-            {
-                "model total norm": model_grad_norm,
-                "global model parameters norm": model_params_norm,
-                "round": i + 1,
-            },
-            commit=True,
-        )
+        # wandb.log(
+        #     {
+        #         "model total norm": model_grad_norm,
+        #         "global model parameters norm": model_params_norm,
+        #         "round": i + 1,
+        #     },
+        #     commit=True,
+        # )
 
-        # Save round global model checkpoint
-        if (
-            (i + 1) == num_rounds * 0.05
-            or (i + 1) == num_rounds * 0.25
-            or (i + 1) == num_rounds * 0.5
-            or (i + 1) == num_rounds * 0.75
-        ):
-            where_saved = server.save_model(
-                i + 1,
-                os.path.join(
-                    ckpt_path,
-                    "round:"
-                    + str(i + 1)
-                    + "_"
-                    + job_name
-                    + "_"
-                    + current_time
-                    + ".ckpt",
-                ),
-                swa_n if args.swa else None,
-            )
-        else:
-            where_saved = server.save_model(
-                i + 1, os.path.join(ckpt_path, ckpt_name), swa_n if args.swa else None
-            )
-        wandb.save(where_saved)
-        print("Checkpoint saved in path: %s" % where_saved)
-        wandb.save(file)
+        # # Save round global model checkpoint
+        # if (
+        #     (i + 1) == num_rounds * 0.05
+        #     or (i + 1) == num_rounds * 0.25
+        #     or (i + 1) == num_rounds * 0.5
+        #     or (i + 1) == num_rounds * 0.75
+        # ):
+        #     where_saved = server.save_model(
+        #         i + 1,
+        #         os.path.join(
+        #             ckpt_path,
+        #             "round:"
+        #             + str(i + 1)
+        #             + "_"
+        #             + job_name
+        #             + "_"
+        #             + current_time
+        #             + ".ckpt",
+        #         ),
+        #         swa_n if args.swa else None,
+        #     )
+        # else:
+        #     where_saved = server.save_model(
+        #         i + 1, os.path.join(ckpt_path, ckpt_name), swa_n if args.swa else None
+        #     )
+        # wandb.save(where_saved)
+        # print("Checkpoint saved in path: %s" % where_saved)
+        # wandb.save(file)
 
-    ## FINAL ANALYSIS ##
-    where_saved = server.save_model(
-        num_rounds,
-        os.path.join(
-            ckpt_path,
-            "round:" + str(num_rounds) + "_" + job_name + "_" + current_time + ".ckpt",
-        ),
-    )
-    wandb.save(where_saved)
-    print("Checkpoint saved in path: %s" % where_saved)
+    # ## FINAL ANALYSIS ##
+    # where_saved = server.save_model(
+    #     num_rounds,
+    #     os.path.join(
+    #         ckpt_path,
+    #         "round:" + str(num_rounds) + "_" + job_name + "_" + current_time + ".ckpt",
+    #     ),
+    # )
+    # wandb.save(where_saved)
+    # print("Checkpoint saved in path: %s" % where_saved)
 
     if last_accuracies:
         avg_acc = sum(last_accuracies) / len(last_accuracies)
