@@ -1,16 +1,0 @@
-Alpha: alpha_0.50
-Using device: NVIDIA A100-SXM4-80GB
-############################## cifar10.resnet18 ##############################
-Running experiment with server servers.fedopt_server and client clients.sam_client
-Verify client and server: <class 'clients.sam_client.SAMClient'> <class 'servers.fedopt_server.FedOptServer'>
-Running influence estimation:   0%|          | 0/20 [00:00<?, ?it/s]wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id s8e021k6.
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /home/mlr570t1/FedSAM_mem_inf-main/models/wandb/offline-run-20251121_204951-s8e021k6
-Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to /home/mlr570t1/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth
-
-  0%|          | 0.00/44.7M [00:00<?, ?B/s][A
- 10%|▉         | 4.38M/44.7M [00:00<00:00, 45.1MB/s][A
- 34%|███▍      | 15.2M/44.7M [00:00<00:00, 84.9MB/s][A
- 59%|█████▉    | 26.2M/44.7M [00:00<00:00, 95.3MB/s][A
- 85%|████████▌ | 38.1M/44.7M [00:00<00:00, 103MB/s] [A100%|██████████| 44.7M/44.7M [00:00<00:00, 98.4MB/s]
