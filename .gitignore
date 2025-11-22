@@ -18,6 +18,8 @@ checkpoints/
 *.ipynb
 models/results
 *.html
+*.log
+logs_fedopt*
 
 .ipynb_checkpoints
 .vscode/*
