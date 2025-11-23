@@ -662,10 +662,10 @@ def training_run(
             "--- Round %d of %d: Training %d Clients ---"
             % (i + 1, num_rounds, clients_per_round)
         )
-        # fp.write(
-        #     "--- Round %d of %d: Training %d Clients ---\n"
-        #     % (i + 1, num_rounds, clients_per_round)
-        # )
+        fp.write(
+            "--- Round %d of %d: Training %d Clients ---\n"
+            % (i + 1, num_rounds, clients_per_round)
+        )
 
         # Select clients to train during this round
         server.select_clients(i, online(train_clients), num_clients=clients_per_round)
