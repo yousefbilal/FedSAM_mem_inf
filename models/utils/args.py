@@ -9,6 +9,13 @@ SIM_TIMES = ['small', 'medium', 'large']
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    
+    parser.add_argument(
+    "--use_wandb",
+    type=bool,
+    default=False,
+    help="Whether to use Weights & Biases for experiment tracking"
+)
 
     parser.add_argument('--influence_runs', type=int, default=100,
                         help='Number of runs for influence estimation')

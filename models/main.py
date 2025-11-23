@@ -4,7 +4,7 @@ import importlib
 import inspect
 import numpy as np
 import os
-import json
+# import json
 
 # os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 # os.environ['CUDA_VISIBLE_DEVICES'] = "3"
@@ -175,7 +175,7 @@ def main():
 
     # Stack results
     trainset_mask = np.vstack([res["subset_mask"] for res in results])
-    inv_mask = np.logical_not(trainset_mask)
+    # inv_mask = np.logical_not(trainset_mask)
     trainset_correctness = np.vstack([res["train_correctness"] for res in results])
     testset_correctness = np.vstack([res["test_correctness"] for res in results])
 
@@ -325,6 +325,9 @@ def get_client_and_server(server_path, client_path):
 
 
 def init_wandb(args, alpha=None, run_id=None):
+    if not args.use_wandb:
+        return None, None
+    
     group_name = args.algorithm
     if args.algorithm == "fedopt":
         group_name = group_name + "_" + args.server_opt
@@ -430,17 +433,18 @@ def print_stats(
     test_metrics = print_metrics(
         test_stat_metrics, test_num_samples, fp, prefix="{}_".format("test")
     )
-
-    wandb.log(
-        {
-            "Validation accuracy": val_metrics[0],
-            "Validation loss": val_metrics[1],
-            "Test accuracy": test_metrics[0],
-            "Test loss": test_metrics[1],
-            "round": num_round,
-        },
-        commit=False,
-    )
+    
+    if args.use_wandb:
+        wandb.log(
+            {
+                "Validation accuracy": val_metrics[0],
+                "Validation loss": val_metrics[1],
+                "Test accuracy": test_metrics[0],
+                "Test loss": test_metrics[1],
+                "round": num_round,
+            },
+            commit=False,
+        )
 
     return val_metrics, test_metrics
 
@@ -460,23 +464,17 @@ def print_metrics(metrics, weights, fp, prefix=""):
     for metric in metric_names:
         ordered_metric = [metrics[c][metric] for c in sorted(metrics)]
         print(
-            "%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g"
+            "%s: %g"
             % (
                 prefix + metric,
                 np.average(ordered_metric, weights=ordered_weights),
-                np.percentile(ordered_metric, 10),
-                np.percentile(ordered_metric, 50),
-                np.percentile(ordered_metric, 90),
             )
         )
         fp.write(
-            "%s: %g, 10th percentile: %g, 50th percentile: %g, 90th percentile %g\n"
+            "%s: %g\n"
             % (
                 prefix + metric,
                 np.average(ordered_metric, weights=ordered_weights),
-                np.percentile(ordered_metric, 10),
-                np.percentile(ordered_metric, 50),
-                np.percentile(ordered_metric, 90),
             )
         )
         # fp.write("Clients losses:", ordered_metric)
@@ -548,7 +546,6 @@ def training_run(
     test_users,
     run_id,
 ):
-    # FIXME: try moving to training_run() instead
     random.seed(args.seed + run_id)
     np.random.seed(args.seed + run_id)
     torch.manual_seed(args.seed + run_id)
@@ -569,7 +566,7 @@ def training_run(
     if "use_imagenet" in sig.parameters:
         client_model_kwargs["use_imagenet"] = args.imagenet_pretrained
     client_model = ClientModel(*model_params, device, **client_model_kwargs)
-    if args.load and wandb.run.resumed:  # load model from checkpoint
+    if args.load and run is not None and wandb.run.resumed:  # load model from checkpoint
         client_model, checkpoint, ckpt_path_resumed = resume_run(
             client_model, args, wandb.run
         )
@@ -621,14 +618,14 @@ def training_run(
     current_time = start_time.strftime("%m%d%y_%H:%M:%S")
 
     ckpt_path, res_path, file, ckpt_name = create_paths(
-        args, current_time, alpha=alpha, resume=wandb.run.resumed
+        args, current_time, alpha=alpha, resume=(run is not None and wandb.run.resumed)
     )
-    ckpt_name = job_name + "_" + current_time + ".ckpt"
-    if args.load:
-        ckpt_name = ckpt_path_resumed
-        if "round" in ckpt_name:
-            ckpt_name = ckpt_name.partition("_")[2]
-        print("Checkpoint name:", ckpt_name)
+    # ckpt_name = job_name + "_" + current_time + ".ckpt"
+    # if args.load:
+    #     ckpt_name = ckpt_path_resumed
+    #     if "round" in ckpt_name:
+    #         ckpt_name = ckpt_name.partition("_")[2]
+    #     print("Checkpoint name:", ckpt_name)
 
     fp = open(file, "w")
     last_accuracies = []
@@ -643,7 +640,8 @@ def training_run(
     #     args,
     #     fp,
     # )
-    wandb.log({"round": start_round}, commit=True)
+    if run is not None:
+        wandb.log({"round": start_round}, commit=True)
 
     ## Setup SWA
     swa_n = 0
@@ -664,10 +662,10 @@ def training_run(
             "--- Round %d of %d: Training %d Clients ---"
             % (i + 1, num_rounds, clients_per_round)
         )
-        fp.write(
-            "--- Round %d of %d: Training %d Clients ---\n"
-            % (i + 1, num_rounds, clients_per_round)
-        )
+        # fp.write(
+        #     "--- Round %d of %d: Training %d Clients ---\n"
+        #     % (i + 1, num_rounds, clients_per_round)
+        # )
 
         # Select clients to train during this round
         server.select_clients(i, online(train_clients), num_clients=clients_per_round)
@@ -779,15 +777,17 @@ def training_run(
     if last_accuracies:
         avg_acc = sum(last_accuracies) / len(last_accuracies)
         print("Last {:d} rounds accuracy: {:.3f}".format(len(last_accuracies), avg_acc))
-        wandb.log(
-            {"Averaged final accuracy": avg_acc, "round": num_rounds}, commit=True
-        )
+        if run is not None:
+            wandb.log(
+                {"Averaged final accuracy": avg_acc, "round": num_rounds}, commit=True
+            )
 
     # Save results
     fp.close()
-    wandb.save(file)
     print("File saved in path: %s" % res_path)
-    wandb.finish()
+    if run is not None:
+        wandb.save(file)
+        wandb.finish()
 
     client_model.load_state_dict(server.model)
     return client_model, file

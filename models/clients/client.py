@@ -5,7 +5,6 @@ import torch.nn.functional as F
 import torch.optim as optim
 import warnings
 from baseline_constants import ACCURACY_KEY
-from tqdm import tqdm
 
 class Client:
 
@@ -15,8 +14,8 @@ class Client:
         self.id = client_id
         self.train_data = train_data
         self.eval_data = eval_data
-        self.trainloader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=num_workers) if self.train_data.__len__() != 0 else None
-        self.testloader = torch.utils.data.DataLoader(eval_data, batch_size=batch_size, shuffle=False, num_workers=num_workers) if self.eval_data.__len__() != 0 else None
+        self.trainloader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=True) if self.train_data.__len__() != 0 else None
+        self.testloader = torch.utils.data.DataLoader(eval_data, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True) if self.eval_data.__len__() != 0 else None
         self._classes = self._client_labels()
         # self.num_samples_per_class = self.number_of_samples_per_class()
         self.seed = seed
@@ -45,6 +44,7 @@ class Client:
         # Train model
         criterion = nn.CrossEntropyLoss().to(self.device)
         optimizer = optim.SGD(self.model.parameters(), lr=self.lr, weight_decay=self.weight_decay, momentum=self.momentum)
+        # optimizer = optim.AdamW(self.model.parameters(), lr=self.lr, weight_decay=self.weight_decay)
         losses = np.empty(num_epochs)
 
         for epoch in range(num_epochs):
