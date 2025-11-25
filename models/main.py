@@ -640,6 +640,11 @@ def training_run(
     #     args,
     #     fp,
     # )
+    
+    best_test_acc = -1
+    best_model_state = None
+    best_round = 0
+    
     if run is not None:
         wandb.log({"round": start_round}, commit=True)
 
@@ -714,6 +719,13 @@ def training_run(
                 args,
                 fp,
             )
+            
+            current_test_acc = test_metrics[0]
+            if current_test_acc > best_test_acc:
+                best_test_acc = current_test_acc
+                best_round = i + 1
+                best_model_state = {k: v.clone() for k, v in server.model.items()}
+                print(f"New best test accuracy: {best_test_acc:.4f} at round {best_round}")
             # if (i + 1) > num_rounds - 100:
             #     last_accuracies.append(test_metrics[0])
 
@@ -789,6 +801,10 @@ def training_run(
         wandb.save(file)
         wandb.finish()
 
+    if best_model_state is not None:
+        print(f"Loading best model from round {best_round} with test accuracy {best_test_acc:.4f}")
+        server.model = best_model_state
+    
     client_model.load_state_dict(server.model)
     return client_model, file
 
