@@ -112,7 +112,7 @@ def main():
     n_runs = args.influence_runs
     subset_ratio = args.subset_ratio
 
-    results = []
+    # results = []
 
     for i_run in tqdm(range(n_runs), desc="Running influence estimation"):
         subset_mask, subset_train_data = subset_train(
@@ -165,33 +165,33 @@ def main():
         
         print("Saved to", save_path)
 
-        results.append(
-            {
-                "subset_mask": subset_mask,
-                "train_correctness": train_correctness,
-                "test_correctness": test_correctness,
-            }
-        )
+        # results.append(
+        #     {
+        #         "subset_mask": subset_mask,
+        #         "train_correctness": train_correctness,
+        #         "test_correctness": test_correctness,
+        #     }
+        # )
 
-    # Stack results
-    trainset_mask = np.vstack([res["subset_mask"] for res in results])
-    # inv_mask = np.logical_not(trainset_mask)
-    trainset_correctness = np.vstack([res["train_correctness"] for res in results])
-    testset_correctness = np.vstack([res["test_correctness"] for res in results])
+    # # Stack results
+    # trainset_mask = np.vstack([res["subset_mask"] for res in results])
+    # # inv_mask = np.logical_not(trainset_mask)
+    # trainset_correctness = np.vstack([res["train_correctness"] for res in results])
+    # testset_correctness = np.vstack([res["test_correctness"] for res in results])
 
-    root_name, _ = os.path.splitext(file_name)
-    root_name = "_".join(root_name.split("_")[:-2])
+    # root_name, _ = os.path.splitext(file_name)
+    # root_name = "_".join(root_name.split("_")[:-2])
 
-    correctness_file = root_name + f"_{args.seed}_setcorrectess.npz"
-    np.savez_compressed(
-        correctness_file,
-        trainset_mask=trainset_mask,
-        trainset_correctness=trainset_correctness,
-        testset_correctness=testset_correctness,
-    )
+    # correctness_file = root_name + f"_{args.seed}_setcorrectess.npz"
+    # np.savez_compressed(
+    #     correctness_file,
+    #     trainset_mask=trainset_mask,
+    #     trainset_correctness=trainset_correctness,
+    #     testset_correctness=testset_correctness,
+    # )
 
-    print("Saved to", correctness_file)
-    print(f"Average test accuracy = {np.mean(testset_correctness):.4f}")
+    # print("Saved to", correctness_file)
+    # print(f"Average test accuracy = {np.mean(testset_correctness):.4f}")
 
     # def _masked_avg(x, mask, axis=0, eps=1e-10):
     #     return (
