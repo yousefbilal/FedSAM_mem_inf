@@ -87,6 +87,6 @@ def aggregate_results(results_dir, pattern):
     return final_save_path
 
 
-results_dir = "results/cifar10/cnn/fedsam"
+results_dir = "results/cifar10/resnet18"
 pattern = "*_correctness*.npz" 
 aggregate_results(results_dir, pattern)
