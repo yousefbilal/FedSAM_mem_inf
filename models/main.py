@@ -482,13 +482,48 @@ def print_metrics(metrics, weights, fp, prefix=""):
     return metrics_values
 
 
-def subset_train(seed, subset_ratio, train_data):
-    # np.random.seed(seed)
-    num_train_total = len(train_data["x"])
-    num_train = int(num_train_total * subset_ratio)
+# def subset_train(seed, subset_ratio, train_data):
+#     np.random.seed(seed)
+#     num_train_total = len(train_data["x"])
+#     num_train = int(num_train_total * subset_ratio)
 
-    # Select random subset of training data
-    subset_idx = np.random.choice(num_train_total, size=num_train, replace=False)
+#     # Select random subset of training data
+#     subset_idx = np.random.choice(num_train_total, size=num_train, replace=False)
+#     subset_mask = np.zeros(num_train_total, dtype=bool)
+#     subset_mask[subset_idx] = True
+
+#     # Create subset of training data
+#     subset_train_data = {
+#         "x": train_data["x"][subset_idx],
+#         "y": train_data["y"][subset_idx],
+#     }
+
+#     return subset_mask, subset_train_data
+
+def subset_train(seed, subset_ratio, train_data):
+    np.random.seed(seed)
+    num_train_total = len(train_data["x"])
+    # Get labels
+    labels = train_data["y"]
+    unique_classes = np.unique(labels)
+    
+    subset_idx = []
+    
+    # For each class, sample proportionally
+    for cls in unique_classes:
+        # Find indices of this class
+        class_mask = labels == cls
+        class_indices = np.where(class_mask)[0]
+        
+        # Calculate how many samples to take from this class
+        n_class_samples = int(len(class_indices) * subset_ratio)
+        
+        # Randomly sample from this class
+        selected = np.random.choice(class_indices, size=n_class_samples, replace=False)
+        subset_idx.extend(selected)
+    
+    # Convert to array and create mask
+    subset_idx = np.array(subset_idx)
     subset_mask = np.zeros(num_train_total, dtype=bool)
     subset_mask[subset_idx] = True
 
@@ -615,7 +650,7 @@ def training_run(
     print("--- Random Initialization ---")
 
     start_time = datetime.now()
-    current_time = start_time.strftime("%m%d%y_%H:%M:%S")
+    current_time = start_time.strftime("%m%d%y_%H-%M-%S")
 
     ckpt_path, res_path, file, ckpt_name = create_paths(
         args, current_time, alpha=alpha, resume=(run is not None and wandb.run.resumed)

@@ -1,12 +1,15 @@
 import numpy as np
 import glob
 import os
+import argparse
+
 
 def _masked_avg(x, mask, axis=0, eps=1e-10):
     """Calculate masked average."""
     return (
         np.sum(x * mask, axis=axis) / np.maximum(np.sum(mask, axis=axis), eps)
     ).astype(np.float32)
+
 
 def _masked_dot(x, mask, eps=1e-10):
     """Calculate masked dot product."""
@@ -15,6 +18,7 @@ def _masked_dot(x, mask, eps=1e-10):
         np.matmul(x, mask) / np.maximum(np.sum(mask, axis=0, keepdims=True), eps)
     ).astype(np.float32)
 
+
 def aggregate_results(results_dir, pattern):
     """
     Loads all .npz files matching the pattern, stacks their contents,
@@ -22,9 +26,11 @@ def aggregate_results(results_dir, pattern):
     """
     search_path = os.path.join(results_dir, pattern)
     result_files = glob.glob(search_path)
-    
+
     if not result_files:
-        print(f"No '.npz' files found in '{results_dir}' matching the pattern '{pattern}'")
+        print(
+            f"No '.npz' files found in '{results_dir}' matching the pattern '{pattern}'"
+        )
         return
 
     print(f"Found {len(result_files)} result files. Aggregating...")
@@ -34,16 +40,16 @@ def aggregate_results(results_dir, pattern):
     all_test_correctness = []
 
     # Load data from all files
-    for f_path in sorted(result_files): # Sort to be tidy
+    for f_path in sorted(result_files):  # Sort to be tidy
         # print(f"Loading {f_path}...") # Uncomment for debugging
         try:
             data = np.load(f_path)
-            all_masks.append(data['subset_mask'])
-            all_train_correctness.append(data['train_correctness'])
-            all_test_correctness.append(data['test_correctness'])
+            all_masks.append(data["subset_mask"])
+            all_train_correctness.append(data["train_correctness"])
+            all_test_correctness.append(data["test_correctness"])
         except Exception as e:
             print(f"  Error loading {f_path}: {e}")
-    
+
     if not all_masks:
         print("No data was successfully loaded.")
         return
@@ -60,7 +66,7 @@ def aggregate_results(results_dir, pattern):
 
     # --- Perform the final aggregation logic ---
     inv_mask = np.logical_not(trainset_mask)
-    
+
     avg_test_acc = np.mean(testset_correctness)
     print(f"\nOverall Average test accuracy = {avg_test_acc:.4f}")
 
@@ -73,7 +79,7 @@ def aggregate_results(results_dir, pattern):
 
     print(f"Overall Memorization (shape): {mem_est.shape}")
     print(f"Overall Influence (shape): {infl_est.shape}")
-    
+
     # Save the final aggregated results
     final_save_path = os.path.join(results_dir, "AGGREGATED_RESULTS_FINAL.npz")
     np.savez_compressed(
@@ -87,6 +93,9 @@ def aggregate_results(results_dir, pattern):
     return final_save_path
 
 
-results_dir = "results/cifar10/resnet18"
-pattern = "*_correctness*.npz" 
-aggregate_results(results_dir, pattern)
+parser = argparse.ArgumentParser(description="aggregate results.")
+parser.add_argument("--results-dir", required=True)
+args = parser.parse_args()
+pattern = "*_correctness*.npz"
+
+aggregate_results(args.results_dir, pattern)
