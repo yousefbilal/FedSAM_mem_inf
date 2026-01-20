@@ -28,3 +28,6 @@ data/**
 !data/cifar10/
 !data/cifar10/preprocessing/
 !data/cifar10/preprocessing/save_images.py
+!data/cifar100/
+!data/cifar100/preprocessing/
+!data/cifar100/preprocessing/save_images.py

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from utils.model_utils import read_data, split_noniid_dirichlet
 import argparse
 
-def visualize_client_split(client_data, n_classes=10, output_dir='plots'):
+def visualize_client_split(client_data, alpha, n_classes=10, output_dir='plots'):
     """
     Visualizes the data distribution across clients.
     
@@ -53,7 +53,7 @@ def visualize_client_split(client_data, n_classes=10, output_dir='plots'):
     
     ax.set_xlabel('Class', fontsize=12)
     ax.set_ylabel('Client ID', fontsize=12)
-    ax.set_title('Client-Class Data Distribution Heatmap', fontsize=14, fontweight='bold')
+    ax.set_title('Client-Class Data Distribution Heatmap', fontsize=14)
     
     plt.tight_layout()
     plt.savefig(f'{output_dir}/client_class_heatmap.png', dpi=300, bbox_inches='tight')
@@ -61,7 +61,7 @@ def visualize_client_split(client_data, n_classes=10, output_dir='plots'):
     plt.show()
     
     # ===== PLOT 2: Stacked Bar Chart =====
-    fig, ax = plt.subplots(figsize=(max(12, n_clients * 0.3), 6))
+    fig, ax = plt.subplots(figsize=(max(10, n_clients * 0.1), 6))
     
     # Prepare data for stacked bar
     bottom = np.zeros(n_clients)
@@ -75,7 +75,7 @@ def visualize_client_split(client_data, n_classes=10, output_dir='plots'):
     
     ax.set_xlabel('Client ID', fontsize=12)
     ax.set_ylabel('Number of Samples', fontsize=12)
-    ax.set_title('Class Distribution per Client (Stacked)', fontsize=14, fontweight='bold')
+    ax.set_title(f'Class Distribution per Client ($\\alpha={alpha}$)', fontsize=14)
     ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', ncol=1)
     ax.grid(axis='y', alpha=0.3)
     
@@ -93,7 +93,7 @@ def visualize_client_split(client_data, n_classes=10, output_dir='plots'):
     
     ax.set_xlabel('Client ID', fontsize=12)
     ax.set_ylabel('Number of Samples', fontsize=12)
-    ax.set_title('Total Samples per Client', fontsize=14, fontweight='bold')
+    ax.set_title('Total Samples per Client', fontsize=14)
     ax.legend(fontsize=11)
     ax.grid(axis='y', alpha=0.3)
     
@@ -103,7 +103,7 @@ def visualize_client_split(client_data, n_classes=10, output_dir='plots'):
     plt.show()
     
     # ===== PLOT 4: Class Diversity per Client =====
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(8, 6))
     
     # Count how many classes each client has (non-zero counts)
     n_classes_per_client = np.sum(client_class_distributions > 0, axis=1)
@@ -114,7 +114,7 @@ def visualize_client_split(client_data, n_classes=10, output_dir='plots'):
     
     ax.set_xlabel('Client ID', fontsize=12)
     ax.set_ylabel('Number of Unique Classes', fontsize=12)
-    ax.set_title('Class Diversity per Client', fontsize=14, fontweight='bold')
+    ax.set_title(f'Class Diversity per Client ($\\alpha={alpha}$)', fontsize=14)
     ax.set_yticks(range(0, n_classes + 1))
     ax.legend(fontsize=11)
     ax.grid(axis='y', alpha=0.3)
@@ -185,7 +185,7 @@ def main():
     
     # Visualize
     visualize_client_split(client_data, n_classes=args.n_classes, 
-                          output_dir=args.output_dir)
+                          output_dir=args.output_dir, alpha=args.alpha)
     
     print(f"\nPlots saved to {args.output_dir}/")
 

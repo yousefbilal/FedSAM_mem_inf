@@ -1,20 +1,20 @@
 import imageio
 import numpy as np
-import os
-import pandas as pd
 import pickle
 from tqdm import tqdm
 
-DIRPATH = './'
+DIRPATH = "./"
+
 
 def unpickle(file):
-    with open(file, 'rb') as fo:
-        dict = pickle.load(fo, encoding='bytes')
+    with open(file, "rb") as fo:
+        dict = pickle.load(fo, encoding="bytes")
     return dict
 
+
 print("#### Setting up CIFAR10 ####")
-meta = unpickle(DIRPATH + '/cifar-10-batches-py/batches.meta')
-label_names = [t.decode('utf8') for t in meta[b'label_names']]
+meta = unpickle(DIRPATH + "/cifar-10-batches-py/batches.meta")
+label_names = [t.decode("utf8") for t in meta[b"label_names"]]
 
 print("Label names:", label_names)
 
@@ -23,9 +23,9 @@ labels = []
 
 for i in range(1, 6):
     print("Batch ", i)
-    batch = unpickle(DIRPATH + 'cifar-10-batches-py/data_batch_'+str(i))
-    data = batch[b'data']
-    batch_labels = batch[b'labels']
+    batch = unpickle(DIRPATH + "cifar-10-batches-py/data_batch_" + str(i))
+    data = batch[b"data"]
+    batch_labels = batch[b"labels"]
     labels.extend(batch_labels)
     for d in data:
         image = np.zeros((32, 32, 3), dtype=np.uint8)
@@ -38,12 +38,12 @@ print("Saving train images...")
 for index, image in tqdm(enumerate(images), total=len(images)):
     label = labels[index]
     label_name = label_names[label]
-    filename = 'img_' + str(index) + '_label_' + str(label) + '.png'
-    imageio.imwrite('../data/img/train/%s' % filename, image)
+    filename = "img_" + str(index) + "_label_" + str(label) + ".png"
+    imageio.imwrite("../data/img/train/%s" % filename, image)
 
-test = unpickle(DIRPATH + '/cifar-10-batches-py/test_batch')
-test_data = test[b'data']
-test_labels = test[b'labels']
+test = unpickle(DIRPATH + "/cifar-10-batches-py/test_batch")
+test_data = test[b"data"]
+test_labels = test[b"labels"]
 images = []
 
 for d in test_data:
@@ -57,5 +57,5 @@ print("Saving test images...")
 for index, image in tqdm(enumerate(images), total=len(images)):
     label = test_labels[index]
     label_name = label_names[label]
-    filename = 'img_' + str(index) + '_label_' + str(label) + '.png'
-    imageio.imwrite('../data/img/test/%s' % filename, image)
+    filename = "img_" + str(index) + "_label_" + str(label) + ".png"
+    imageio.imwrite("../data/img/test/%s" % filename, image)
